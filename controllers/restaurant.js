@@ -3,7 +3,6 @@
  */
 const express = require('express');
 const Restaurant = require('../models/restaurant');
-const Review = require('../models/review')
 const restaurantRouter = express.Router();
 
 restaurantRouter.get('/', (req, res) => {

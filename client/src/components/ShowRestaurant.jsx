@@ -5,13 +5,14 @@ import RatingSelector from './RatingSelector'
 export default class ShowRestaurant extends Component {
     
     state = {
-        restaurant: {},
-        reviews: [],
         newReview: {
             rating: '***',
             comment: '',
             restaurant: this.props.match.params.id,
-        }
+        },
+        products: [],
+        reviews: [],
+        restaurant: {},
     };
 
     getReviews = () => {
