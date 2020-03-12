@@ -16,7 +16,7 @@ export default class RestaurantList extends Component {
         restaurants: [],
         addRestaurant: false,
     };
-
+    
     inputChange = (event) => {
         const changedInput = event.target.name;
         const updatedNewRestautant = { ...this.state.newRestaurant };
@@ -29,46 +29,82 @@ export default class RestaurantList extends Component {
             newRestaurant: updatedNewRestautant,
         });
     };
-
+    
+    toggleAddForm = () => {
+        const status = !this.state.addRestaurant;
+        this.setState({
+            addRestaurant: status
+        });
+    };
+    
+    getRestaurants = () => {
+        axios.get('/api/restaurants/').then( (response) => {
+            const foundRestaurants = response.data;
+            this.setState({
+                restaurants: foundRestaurants
+            });
+        });
+    };
+    
+    
     addNewRestaurant = (event) => {
-        event.preventDefault();
         axios.post('/api/restaurants/', this.state.newRestaurant).then( () => {
             this.toggleAddForm();
             this.getRestaurants();
         });
     };
 
-
-
-
+    componentDidMount() {
+        this.getRestaurants();
+    };
+    
     render() {
         
         return (
+            
             <div>
-                <form onSubmit={ this.addNewRestaurant }>
-                    <div>
-                        <input type='text' name='name' onChange={ this.inputChange }></input>
-                    </div>
-                    <div>
-                        <input type='text' name='street' onChange={ this.inputChange }></input>
-                    </div>
-                    <div>
-                        <input type='text' name='state' onChange={ this.inputChange }></input>
-                    </div>
-                    <div>
-                        <input type='number' name='zipCode' onChange={ this.inputChange }></input>
-                    </div>
-                    <div>
-                        <input type='text' name='image' onChange={ this.inputChange }></input>
-                    </div>
-                    <div>
-                        <textarea name="description" rows="10" cols="30"  onChange={ this.inputChange }>
-                        </textarea>
-                    </div>
-                    <div>
-                        <input type='submit' value='Add Restaurant' />
-                    </div>
-                </form>
+
+                { this.state.addRestaurant
+                ? <div>
+                    <form onSubmit={ this.addNewRestaurant }>
+                        <div>
+                            <label>Name of Restaurant:   </label>
+                            <input type='text' name='name' onChange={ this.inputChange }></input>
+                        </div>
+                        <div>
+                            <label>Street Name and Number:   </label>
+                            <input type='text' name='street' onChange={ this.inputChange }></input>
+                        </div>
+                        <div>
+                        <label>State:   </label>
+                            <input type='text' name='state' onChange={ this.inputChange }></input>
+                        </div>
+                        <div>
+                        <label>zipCode:   </label>
+                            <input type='number' name='zipCode' onChange={ this.inputChange }></input>
+                        </div>
+                        <div>
+                        <label>Image of Restaurant:   </label>
+                            <input type='text' name='image' onChange={ this.inputChange }></input>
+                        </div>
+                        <div>
+                        <label>Description:   </label>
+                            <textarea name="description" rows="10" cols="30"  onChange={ this.inputChange }>
+                            </textarea>
+                        </div>
+                        <div>
+                            <input type='submit' value='Add Restaurant' />
+                        </div>
+                    </form>
+                </div>
+                : null
+                }
+                <button onClick={ this.toggleAddForm }> 
+                    {   this.state.addRestaurant
+                        ? 'Cancel'         
+                        : 'Add Restaurant'
+                    }
+                </button>
             </div>
         )
     };
