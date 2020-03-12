@@ -36,17 +36,18 @@ export default class RestaurantForm extends Component {
     };
 
     submitNewRestaurant = (event) => {
-        axios.post('/api/restaurants/', this.state.newForm).then( () => {
+        axios.post('/api/restaurants/', this.state.form).then( () => {
             this.props.toggleAddForm();
             this.props.getRestaurants();
         });
     };
 
     submitEditForm = (event) => {
-        axios.put(`/api/restaurants/${this.props.restaurant._id} `).then( () => {
+    event.preventDefault();
+        axios.put(`/api/restaurants/${this.props.restaurant._id} `, this.state.form).then( () => {
             this.props.getRestaurant()
-        })
-    }
+        });
+    };
 
     componentDidMount() {
         this.formType()
