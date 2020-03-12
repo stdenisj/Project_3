@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Restaurant from './Restaurant'
+import AddRestaurantForm from './AddRestaurantForm'
 import axios from 'axios'
 
 export default class RestaurantList extends Component {
@@ -70,38 +71,39 @@ export default class RestaurantList extends Component {
                 }
 
                 { this.state.addRestaurant
-                ? <div>
-                    <form onSubmit={ this.addNewRestaurant }>
-                        <div>
-                            <label>Name of Restaurant:   </label>
-                            <input type='text' name='name' onChange={ this.inputChange }></input>
-                        </div>
-                        <div>
-                            <label>Street Name and Number:   </label>
-                            <input type='text' name='street' onChange={ this.inputChange }></input>
-                        </div>
-                        <div>
-                        <label>State:   </label>
-                            <input type='text' name='state' onChange={ this.inputChange }></input>
-                        </div>
-                        <div>
-                        <label>zipCode:   </label>
-                            <input type='number' name='zipCode' onChange={ this.inputChange }></input>
-                        </div>
-                        <div>
-                        <label>Image of Restaurant:   </label>
-                            <input type='text' name='image' onChange={ this.inputChange }></input>
-                        </div>
-                        <div>
-                        <label>Description:   </label>
-                            <textarea name="description" rows="10" cols="30"  onChange={ this.inputChange }>
-                            </textarea>
-                        </div>
-                        <div>
-                            <input type='submit' value='Add Restaurant' />
-                        </div>
-                    </form>
-                </div>
+                 ? <AddRestaurantForm addNewRestaurant={ this.addNewRestaurant } inputChange={ this.inputChange } />
+                //<div>
+                //     <form onSubmit={ this.addNewRestaurant }>
+                //         <div>
+                //             <label>Name of Restaurant:   </label>
+                //             <input type='text' name='name' onChange={ this.inputChange }></input>
+                //         </div>
+                //         <div>
+                //             <label>Street Name and Number:   </label>
+                //             <input type='text' name='street' onChange={ this.inputChange }></input>
+                //         </div>
+                //         <div>
+                //         <label>State:   </label>
+                //             <input type='text' name='state' onChange={ this.inputChange }></input>
+                //         </div>
+                //         <div>
+                //         <label>zipCode:   </label>
+                //             <input type='number' name='zipCode' onChange={ this.inputChange }></input>
+                //         </div>
+                //         <div>
+                //         <label>Image of Restaurant:   </label>
+                //             <input type='text' name='image' onChange={ this.inputChange }></input>
+                //         </div>
+                //         <div>
+                //         <label>Description:   </label>
+                //             <textarea name="description" rows="10" cols="30"  onChange={ this.inputChange }>
+                //             </textarea>
+                //         </div>
+                //         <div>
+                //             <input type='submit' value='Add Restaurant' />
+                //         </div>
+                //     </form>
+                // </div>
                 : null
                 }
                 <button onClick={ this.toggleAddForm }> 
