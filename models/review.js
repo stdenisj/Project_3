@@ -10,16 +10,12 @@ const Review = new Schema({
         type: Date,
         default: Date.now,
     },
-    rating: {
-        type: String,
-        default: '***',
-        enum: ['*', '**','***', '****', '*****']
-    },
+    rating: String,
     comment: String,
-    restaurant: [{
+    restaurant: {
         type: Schema.Types.ObjectId,
         ref: 'Restaurant',
-    }]
+    }
 });
 
 module.exports = mongoose.model('Review', Review);
