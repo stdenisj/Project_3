@@ -16,6 +16,6 @@ const Review = new Schema({
         enum: ['*', '**','***', '****', '*****']
     },
     comment: String,
-})
+});
 
-module.exports = mongoose.model('Review', Review)
+module.exports = mongoose.model('Review', Review);

@@ -19,7 +19,7 @@ const Restaurant = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Review',
     }
-})
+});
 
 
 module.exports = mongoose.model('Restaurant', Restaurant);
