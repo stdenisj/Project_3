@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Restaurant from './Restaurant'
 import axios from 'axios'
 
 export default class RestaurantList extends Component {
@@ -63,6 +64,10 @@ export default class RestaurantList extends Component {
         return (
             
             <div>
+                { this.state.restaurants.map( (restaurant, i) => {
+                    return <Restaurant restaurant={restaurant} key={i} />
+                })
+                }
 
                 { this.state.addRestaurant
                 ? <div>
