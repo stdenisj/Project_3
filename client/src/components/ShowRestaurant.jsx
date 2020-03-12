@@ -6,24 +6,40 @@ export default class ShowRestaurant extends Component {
     
     state = {
         restaurant: {},
+        reviews: [],
         newReview: {
-            
-            rating: '',
+            rating: '***',
             comment: '',
             restaurant: this.props.match.params.id,
         }
     };
 
+    getReviews = () => {
+        const restId = this.props.match.params.id;
+        axios.get(`/api/reviews/${restId}`).then( (response) => {
+            this.setState({
+                reviews: response.data,
+            });
+        });
+    };
     
 
     getRestaurant = () => {
-        const restid = this.props.match.params.id;
-        axios.get(`/api/restaurants/${ restid }`).then( (response) => {
+        const restId = this.props.match.params.id;
+        axios.get(`/api/restaurants/${ restId }`).then( (response) => {
             this.setState({
                 restaurant: response.data,
             });
         });
     };
+    
+    addNewReview = (event) => {
+        event.preventDefault();
+        axios.post('/api/reviews', this.state.newReview).then( () => {
+            this.getReviews();
+        });
+
+    }
 
     inputChange = (event) => {
         const changedInput = event.target.name;
@@ -34,16 +50,10 @@ export default class ShowRestaurant extends Component {
         });
     };
 
-    
-    addNewReview = (event) => {
-        axios.post('/api/reviews/', this.state.newReview).then( () => {
-            this.getRestaurant();
-        });
-
-    }
 
     componentDidMount() {
         this.getRestaurant();
+        this.getReviews();
     };
 
 
