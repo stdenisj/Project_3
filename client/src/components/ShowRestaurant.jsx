@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import RatingSelector from './RatingSelector'
+import RestaurantForm from './RestaurantForm';
 
 export default class ShowRestaurant extends Component {
     
     state = {
+        isEdit: false,
         newReview: {
             rating: '***',
             comment: '',
@@ -57,6 +59,12 @@ export default class ShowRestaurant extends Component {
         this.getReviews();
     };
 
+    toggleEditForm = (event) => {
+        const flagStatus = !this.state.isEdit;
+        this.setState({
+            isEdit: flagStatus,
+        });
+    };;
 
     render() {
         return (
@@ -72,6 +80,20 @@ export default class ShowRestaurant extends Component {
                             <input type="submit" value="Add review" />
                         </div>
                 </form>
+
+                <button onClick={ this.toggleEditForm }>
+                        { this.state.isEdit
+                            ? 'Cancel'
+                            : 'Edit'
+                        }
+                </button>
+                    { this.state.isEdit
+                    ? < RestaurantForm 
+                        restaurant={ this.state.restaurant }
+                        isEdit={ this.state.isEdit }
+                    />
+                    : null
+                    }
             </div>
         )
     }

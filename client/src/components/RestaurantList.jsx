@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Restaurant from './Restaurant'
-import AddRestaurantForm from './AddRestaurantForm'
+import RestaurantForm from './RestaurantForm'
 import axios from 'axios'
 
 export default class RestaurantList extends Component {
@@ -17,6 +17,7 @@ export default class RestaurantList extends Component {
         },
         restaurants: [],
         addRestaurant: false,
+        
     };
     
     inputChange = (event) => {
@@ -71,7 +72,10 @@ export default class RestaurantList extends Component {
                 }
 
                 { this.state.addRestaurant
-                 ? <AddRestaurantForm addNewRestaurant={ this.addNewRestaurant } inputChange={ this.inputChange } />
+                 ? <RestaurantForm 
+                        addNewRestaurant={ this.addNewRestaurant } 
+                        inputChange={ this.inputChange } 
+                    />
                 //<div>
                 //     <form onSubmit={ this.addNewRestaurant }>
                 //         <div>
