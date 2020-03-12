@@ -15,9 +15,9 @@ const Restaurant = new Schema({
     },
     image: String,
     description: String,
-    comments: {
+    reviews: {
         type: Schema.Types.ObjectId,
-        ref: 'Comments',
+        ref: 'Review',
     }
 })
 
