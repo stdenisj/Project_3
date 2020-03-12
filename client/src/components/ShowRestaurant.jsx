@@ -91,6 +91,7 @@ export default class ShowRestaurant extends Component {
                     ? < RestaurantForm 
                         restaurant={ this.state.restaurant }
                         isEdit={ this.state.isEdit }
+                        getRestaurant={ this.getRestaurant }
                     />
                     : null
                     }

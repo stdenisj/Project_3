@@ -1,29 +1,73 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 export default class RestaurantForm extends Component {
-    selectedOption = (event) => {
-        this.props.inputChange(event);
+    state = {
+        form: {
+            name: '',
+            location: {
+                street: '',
+                state: '',
+                zipCode: 0,
+            },
+            image: '',
+            description: '',
+        },
+    }
+
+    formType = () => {
+        if(this.props.isEdit) {
+            this.setState({
+                form: { ...this.props.restaurant }
+            });
+        };
     };
 
-    submitNewForm = (event) => {
-        this.props.addNewRestaurant(event);
+    inputChange = (event) => {
+        const changedInput = event.target.name;
+        const updatedForm = { ...this.state.form };
+        if (changedInput === 'street' || changedInput === 'state' || changedInput === 'zipCode' ) { 
+            updatedForm.location[changedInput] = event.target.value
+        } else {
+            updatedForm[changedInput] = event.target.value;
+        }
+        this.setState({
+            form: updatedForm,
+        });
     };
+
+    submitNewRestaurant = (event) => {
+        axios.post('/api/restaurants/', this.state.newForm).then( () => {
+            this.props.toggleAddForm();
+            this.props.getRestaurants();
+        });
+    };
+
+    submitEditForm = (event) => {
+        axios.put(`/api/restaurants/${this.props.restaurant._id} `).then( () => {
+            this.props.getRestaurant()
+        })
+    }
+
+    componentDidMount() {
+        this.formType()
+    }
+
+
 
     render() {
-        const { name, location: {street, state, zipcode}, image, description} = this.props.restaurant
+        
+        const {name, location: {street, state, zipcode}, image, description} = this.state.form
+            
         return (
             <div>
-                 <form onSubmit={ this.submitNewForm }>
+                 <form onSubmit={ this.props.isEdit? this.submitEditForm : this.submitNewRestaurant }>
                     <div>
                         <label>Name of Restaurant:   </label>
                         <input 
                             type='text' 
                             name='name' 
-                            onChange={ this.selectedOption } 
-                            value={ this.props.isEdit
-                              ? name
-                              : null  
-                            }
+                            onChange={ this.inputChange } 
+                            value={ name }
                         />
                     </div>
                     <div>
@@ -31,11 +75,8 @@ export default class RestaurantForm extends Component {
                         <input 
                             type='text' 
                             name='street' 
-                            onChange={ this.selectedOption } 
-                            value={ this.props.isEdit
-                                ? street
-                                : null  
-                              }
+                            onChange={ this.inputChange } 
+                            value={ street }
                         />
                     </div>
                     <div>
@@ -43,11 +84,8 @@ export default class RestaurantForm extends Component {
                         <input 
                             type='text' 
                             name='state' 
-                            onChange={ this.selectedOption }
-                            value={ this.props.isEdit
-                                ? state
-                                : null  
-                              }
+                            onChange={ this.inputChange }
+                            value={ state }
                         />
                     </div>
                     <div>
@@ -55,11 +93,8 @@ export default class RestaurantForm extends Component {
                         <input 
                             type='number' 
                             name='zipCode' 
-                            onChange={ this.selectedOption }
-                            value={ this.props.isEdit
-                                ? zipcode
-                                : null  
-                              }
+                            onChange={ this.inputChange }
+                            value={ zipcode }
                         />
                     </div>
                     <div>
@@ -67,11 +102,8 @@ export default class RestaurantForm extends Component {
                         <input 
                             type='text' 
                             name='image' 
-                            onChange={ this.selectedOption }
-                            value={ this.props.isEdit
-                                ? image
-                                : null  
-                              }
+                            onChange={ this.inputChange }
+                            value={ image }
                         />
                     </div>
                     <div>
@@ -80,11 +112,8 @@ export default class RestaurantForm extends Component {
                             name="description" 
                             rows="10" 
                             cols="30"  
-                            onChange={ this.selectedOption }
-                            value={ this.props.isEdit
-                                ? description
-                                : null  
-                              }
+                            onChange={ this.inputChange }
+                            value={ description }
                         />
                     </div>
                     <div>

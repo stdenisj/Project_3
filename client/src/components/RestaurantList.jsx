@@ -20,18 +20,18 @@ export default class RestaurantList extends Component {
         
     };
     
-    inputChange = (event) => {
-        const changedInput = event.target.name;
-        const updatedNewRestautant = { ...this.state.newRestaurant };
-        if (changedInput === 'street' || changedInput === 'state' || changedInput === 'zipCode' ) { 
-            updatedNewRestautant.location[changedInput] = event.target.value
-        } else {
-            updatedNewRestautant[changedInput] = event.target.value;
-        }
-        this.setState({
-            newRestaurant: updatedNewRestautant,
-        });
-    };
+    // inputChange = (event) => {
+    //     const changedInput = event.target.name;
+    //     const updatedNewRestautant = { ...this.state.newRestaurant };
+    //     if (changedInput === 'street' || changedInput === 'state' || changedInput === 'zipCode' ) { 
+    //         updatedNewRestautant.location[changedInput] = event.target.value
+    //     } else {
+    //         updatedNewRestautant[changedInput] = event.target.value;
+    //     }
+    //     this.setState({
+    //         newRestaurant: updatedNewRestautant,
+    //     });
+    // };
     
     toggleAddForm = () => {
         const status = !this.state.addRestaurant;
@@ -50,12 +50,12 @@ export default class RestaurantList extends Component {
     };
     
     
-    addNewRestaurant = (event) => {
-        axios.post('/api/restaurants/', this.state.newRestaurant).then( () => {
-            this.toggleAddForm();
-            this.getRestaurants();
-        });
-    };
+    // addNewRestaurant = (event) => {
+    //     axios.post('/api/restaurants/', this.state.newRestaurant).then( () => {
+    //         this.toggleAddForm();
+    //         this.getRestaurants();
+    //     });
+    // };
 
     componentDidMount() {
         this.getRestaurants();
@@ -74,7 +74,9 @@ export default class RestaurantList extends Component {
                 { this.state.addRestaurant
                  ? <RestaurantForm 
                         addNewRestaurant={ this.addNewRestaurant } 
-                        inputChange={ this.inputChange } 
+                        inputChange={ this.inputChange }
+                        getRestaurants={ this.getRestaurants }
+                        toggleAddForm={ this.toggleAddForm }
                     />
                 //<div>
                 //     <form onSubmit={ this.addNewRestaurant }>
