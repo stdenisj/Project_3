@@ -8,7 +8,7 @@ export default class RatingSelector extends Component {
     render() {
         return (
             <div>
-                <select name="rating" onChange={ this.selectedOption }>
+                <select name="rating" onChange={ this.selectedOption } defaultValue='***'>
                     <option value="*">1 star</option>
                     <option value="**">2 stars</option>
                     <option value="***">3 stars</option>
