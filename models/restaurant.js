@@ -8,7 +8,7 @@ const Restaurant = new Schema({
         type: String,
         required: true,
     },
-    Location: {
+    location: {
         street: String,
         state: String,
         zipCode: Number,
