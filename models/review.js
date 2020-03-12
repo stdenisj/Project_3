@@ -16,6 +16,10 @@ const Review = new Schema({
         enum: ['*', '**','***', '****', '*****']
     },
     comment: String,
+    restaurant: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Restaurant',
+    }]
 });
 
 module.exports = mongoose.model('Review', Review);
