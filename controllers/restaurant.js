@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const Restaurant = require('../models/restaurant');
+const Review = require('../models/review')
 const restaurantRouter = express.Router();
 
 restaurantRouter.get('/', (req, res) => {
@@ -14,7 +15,7 @@ restaurantRouter.get('/', (req, res) => {
 });
 
 restaurantRouter.get('/:id', (req, res) => {
-  Restaurant.findById(req.params.id).then( (restaurant) => {
+  Restaurant.findById(req.params.id).populate( 'reviews' ).then( (restaurant) => {
     res.json(restaurant);
   }).catch( (e) => {
     console.log(e)
