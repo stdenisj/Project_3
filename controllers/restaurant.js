@@ -24,8 +24,17 @@ restaurantRouter.post('/', (req, res) => {
 });
 
 restaurantRouter.put('/:id', (req, res) => {
-  Restaurant.findByIdAndUpdate(req.params.id, req.body)
-})
+  Restaurant.findByIdAndUpdate(req.params.id, req.body).then( () => {
+    res.status(200).end();
+  });
+});
+
+restaurantRouter.delete('/:id'), (req, res) => {
+  Restaurant.findByIdAndRemove(req.params.id).then( () => {
+    res.status(200).end();
+  });
+};
+g
 
 module.exports = {
   restaurantRouter
