@@ -13,10 +13,19 @@ restaurantRouter.get('/', (req, res) => {
 
 restaurantRouter.get('/:id', (req, res) => {
   Restaurant.findById(req.params.id).then( (restaurant) => {
-    res.json(restaurant)
-  })
-})
+    res.json(restaurant);
+  });
+});
 
+restaurantRouter.post('/', (req, res) => {
+  Restaurant.create(req.body).then( () => {
+    res.status(200).end();
+  });
+});
+
+restaurantRouter.put('/:id', (req, res) => {
+  Restaurant.findByIdAndUpdate(req.params.id, req.body)
+})
 
 module.exports = {
   restaurantRouter
