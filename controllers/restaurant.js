@@ -37,13 +37,13 @@ restaurantRouter.put('/:id', (req, res) => {
   });
 });
 
-restaurantRouter.delete('/:id'), (req, res) => {
-  Restaurant.findByIdAndRemove(req.params.id).then( () => {
+restaurantRouter.delete('/:id', (req, res) => {
+  Restaurant.findByIdAndDelete(req.params.id).then( () => {
     res.status(200).end();
   }).catch( (e) => {
     console.log(e)
   });
-};
+});
 
 module.exports = {
   restaurantRouter

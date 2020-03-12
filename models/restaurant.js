@@ -15,6 +15,10 @@ const Restaurant = new Schema({
     },
     image: String,
     description: String,
+    restaurant: {
+        type: Schema.Types.ObjectId,
+        ref: 'Restaurant',
+    }
 });
 
 

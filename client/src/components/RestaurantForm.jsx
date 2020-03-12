@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
+
 export default class RestaurantForm extends Component {
     state = {
         form: {
@@ -12,6 +14,7 @@ export default class RestaurantForm extends Component {
             image: '',
             description: '',
         },
+        isRedirect: false,
     }
 
     formType = () => {
@@ -49,6 +52,14 @@ export default class RestaurantForm extends Component {
         });
     };
 
+    deleteRestaurant = (event) => {
+        axios.delete(`/api/restaurants/${this.props.restaurant._id}`).then( (response) => {
+            this.setState({
+                isRedirect: true
+            })
+        })
+    }
+
     componentDidMount() {
         this.formType()
     }
@@ -60,7 +71,9 @@ export default class RestaurantForm extends Component {
         const {name, location: {street, state, zipcode}, image, description} = this.state.form
             
         return (
-            <div>
+            this.state.isRedirect
+            ? <Redirect to='/' />
+            : <div>
                  <form onSubmit={ this.props.isEdit? this.submitEditForm : this.submitNewRestaurant }>
                     <div>
                         <label>Name of Restaurant:   </label>
@@ -127,6 +140,9 @@ export default class RestaurantForm extends Component {
                         />
                     </div>
                 </form>
+                    <div>
+                        <button onClick={ this.deleteRestaurant }>Delete</button>
+                    </div>
             </div>
         )
     }

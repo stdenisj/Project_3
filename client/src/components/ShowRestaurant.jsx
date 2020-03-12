@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import RatingSelector from './RatingSelector'
 import RestaurantForm from './RestaurantForm';
+import Review from './Review'
 
 export default class ShowRestaurant extends Component {
     
@@ -69,6 +70,12 @@ export default class ShowRestaurant extends Component {
     render() {
         return (
             <div>
+                <div>
+                    { this.state.reviews.map( (review, i) => {
+                        return <Review review={ review } key={ i } />
+                        })
+                    }
+                </div>
                 <form onSubmit={ this.addNewReview }>
                         <div>
                             <label>Description:   </label>
