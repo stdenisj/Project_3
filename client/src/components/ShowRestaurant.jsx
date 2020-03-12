@@ -1,21 +1,32 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import RatingSelector from './RatingSelector'
+// import RatingSelector from './RatingSelector'
 import RestaurantForm from './RestaurantForm';
 import Review from './Review'
+import ReviewForm from './ReviewForm'
 
 export default class ShowRestaurant extends Component {
     
     state = {
+        addReview: false,
         isEdit: false,
-        newReview: {
-            rating: '***',
-            comment: '',
-            restaurant: this.props.match.params.id,
-        },
+        // newReview: {
+        //     rating: '***',
+        //     comment: '',
+        //     restaurant: this.props.match.params.id,
+        // },
         products: [],
         reviews: [],
         restaurant: {},
+    };
+
+    getProducts = () => {
+        const restId = this.props.match.params.id;
+        axios.get(`/api/products/${restId}`).then( (response) => {
+            this.setState({
+                products: response.data,
+            });
+        });
     };
 
     getReviews = () => {
@@ -37,27 +48,28 @@ export default class ShowRestaurant extends Component {
         });
     };
     
-    addNewReview = (event) => {
-        event.preventDefault();
-        axios.post('/api/reviews', this.state.newReview).then( () => {
-            this.getReviews();
-        });
+    // addNewReview = (event) => {
+    //     event.preventDefault();
+    //     axios.post('/api/reviews', this.state.newReview).then( () => {
+    //         this.getReviews();
+    //     });
 
-    }
+    // }
 
-    inputChange = (event) => {
-        const changedInput = event.target.name;
-        const updatedNewReview = { ...this.state.newReview };
-        updatedNewReview[changedInput] = event.target.value;
-        this.setState({
-            newReview: updatedNewReview,
-        });
-    };
+    // inputChange = (event) => {
+    //     const changedInput = event.target.name;
+    //     const updatedNewReview = { ...this.state.newReview };
+    //     updatedNewReview[changedInput] = event.target.value;
+    //     this.setState({
+    //         newReview: updatedNewReview,
+    //     });
+    // };
 
 
     componentDidMount() {
         this.getRestaurant();
         this.getReviews();
+        this.getProducts()
     };
 
     toggleEditForm = (event) => {
@@ -65,7 +77,14 @@ export default class ShowRestaurant extends Component {
         this.setState({
             isEdit: flagStatus,
         });
-    };;
+    };
+
+    toggleReviewForm = (event) => {
+        const flagStatus = !this.state.addReview;
+        this.setState({
+            addReview: flagStatus,
+        });
+    };
 
     render() {
         return (
@@ -76,7 +95,22 @@ export default class ShowRestaurant extends Component {
                         })
                     }
                 </div>
-                <form onSubmit={ this.addNewReview }>
+                <button onClick={ this.toggleReviewForm }>
+                        { this.state.addReview
+                            ? 'Cancel'
+                            : 'Add Review'
+                        }
+                </button>
+                    { this.state.addReview
+                    ? <ReviewForm 
+                        restaurant={ this.props.match.params.id }
+                        getReviews={ this.getReviews }
+                    />
+                    : null
+                    }
+
+
+                {/* <form onSubmit={ this.addNewReview }>
                         <div>
                             <label>Description:   </label>
                             <textarea name="comment" rows="10" cols="30"  onChange={ this.inputChange }>
@@ -86,7 +120,7 @@ export default class ShowRestaurant extends Component {
                         <div>
                             <input type="submit" value="Add review" />
                         </div>
-                </form>
+                </form> */}
 
                 <button onClick={ this.toggleEditForm }>
                         { this.state.isEdit
@@ -102,6 +136,7 @@ export default class ShowRestaurant extends Component {
                     />
                     : null
                     }
+                    
             </div>
         )
     }
