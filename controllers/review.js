@@ -10,8 +10,8 @@ reviewRouter.get('/', (req, res) => {
     });
 });
 
-reviewRouter.get('/:reviewId', (req, res) => {
-    Review.findById(req.params.id).then( (review) => {
+reviewRouter.get('/:restId', (req, res) => {
+    Review.find( {restaurant: req.params.restId} ).then( (review) => {
         res.json(review);
     }).catch( (e) => {
         console.log(e)
