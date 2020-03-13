@@ -4,10 +4,12 @@ import axios from 'axios'
 import RestaurantForm from './RestaurantForm';
 import Review from './Review'
 import ReviewForm from './ReviewForm'
+import ProductForm from './ProductForm'
 
 export default class ShowRestaurant extends Component {
     
     state = {
+        addProduct: false,
         addReview: false,
         isEdit: false,
         // newReview: {
@@ -86,6 +88,14 @@ export default class ShowRestaurant extends Component {
         });
     };
 
+    toggleProductForm = () => {
+        const flagStatus = !this.state.addProduct;
+        this.setState({
+            addProduct: flagStatus,
+        });
+    };
+
+
     render() {
         return (
             <div>
@@ -108,7 +118,21 @@ export default class ShowRestaurant extends Component {
                     />
                     : null
                     }
-
+                
+                
+                <button onClick={ this.toggleProductForm }>
+                        { this.state.addProduct
+                            ? 'Cancel'
+                            : 'Add Product'
+                        }
+                </button>
+                    { this.state.addProduct
+                    ? <ProductForm 
+                        restaurant={ this.props.match.params.id }
+                        getProducts={ this.getProducts }
+                    />
+                    : null
+                    }
 
                 {/* <form onSubmit={ this.addNewReview }>
                         <div>

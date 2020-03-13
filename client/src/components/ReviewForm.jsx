@@ -16,8 +16,7 @@ export default class ReviewForm extends Component {
         axios.post('/api/reviews', this.state.newReview).then( () => {
             this.props.getReviews();
         });
-
-    }
+    };
 
     inputChange = (event) => {
         const changedInput = event.target.name;

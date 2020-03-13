@@ -21,6 +21,13 @@ export default class ProductForm extends Component {
         });
     };
 
+    addNewProduct = (event) => {
+        event.preventDefault();
+        axios.post('/api/products', this.state.productForm).then( () => {
+            this.props.getProducts();
+        });
+    };
+
     render() {
         return (
             <div>
