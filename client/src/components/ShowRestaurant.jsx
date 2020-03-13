@@ -7,7 +7,7 @@ import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
 import { Link } from 'react-router-dom'
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -103,17 +103,29 @@ export default class ShowRestaurant extends Component {
     render() {
         return (
             <Container fluid>
-                <Container fluid>
                     <Row>
                         <Link to='/'>Home</Link>
                     </Row>
-                    <Row>
-                        { this.state.products.map( (product, i) => {
-                            return <Product product={ product } key={ i } />
-                        })    
+                <Row>
+                    <Col md='auto'>
+                        <Row>
+                            { this.state.products.map( (product, i) => {
+                                return <Product product={ product } key={ i } />
+                            })    
                         }
-                    </Row>
-                </Container>
+                        </Row>
+                    </Col>
+
+                    <Col >
+                        <Row><img  
+                                className='ProductImage'
+                                src={ this.state.restaurant.image} 
+                                alt={ this.state.restaurant.name }/>
+                        </Row>
+                        <Row className='text-justify'>{ this.state.restaurant.name}</Row>
+                        <Row>{ this.state.restaurant.description}</Row>
+                    </Col>
+                </Row> 
 
                 <Container fluid>
                     <Row>

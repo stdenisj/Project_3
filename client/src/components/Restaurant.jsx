@@ -8,6 +8,7 @@ export default class Restaurant extends Component {
             <div>
                 <div>
                     <Image 
+                        className='MainPageImage'
                         src={ this.props.restaurant.image} 
                         alt={ this.props.restaurant.name} 
                         fluid

@@ -32,3 +32,12 @@
   }
 }
 
+.ProductImage {
+  max-width: 20vw;
+  max-height: 20vh;
+}
+
+.MainPageImage {
+  max-width: 50vw;
+  max-height: 50vh;
+}
