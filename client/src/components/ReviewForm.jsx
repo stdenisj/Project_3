@@ -32,8 +32,8 @@ export default class ReviewForm extends Component {
             <div>
                 <form onSubmit={ this.addNewReview }>
                     <div>
-                        <label>Description:   </label>
-                        <textarea name="comment" rows="10" cols="30"  onChange={ this.inputChange }>
+                        <div>Description:   </div>
+                        <textarea name="comment" rows="5" cols="30"  onChange={ this.inputChange }>
                         </textarea>
                     </div>
                     <RatingSelector inputChange={ this.inputChange }/>

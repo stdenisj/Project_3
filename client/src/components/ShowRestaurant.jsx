@@ -5,6 +5,10 @@ import RestaurantForm from './RestaurantForm';
 import Review from './Review'
 import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
+import Product from './Product'
+import { Link } from 'react-router-dom'
+import { Container, Row } from 'react-bootstrap';
+
 
 export default class ShowRestaurant extends Component {
     
@@ -98,19 +102,49 @@ export default class ShowRestaurant extends Component {
 
     render() {
         return (
-            <div>
-                <div>
-                    { this.state.reviews.map( (review, i) => {
-                        return <Review review={ review } key={ i } />
-                        })
-                    }
-                </div>
+            <Container fluid>
+                <Container fluid>
+                    <Row>
+                        <Link to='/'>Home</Link>
+                    </Row>
+                    <Row>
+                        { this.state.products.map( (product, i) => {
+                            return <Product product={ product } key={ i } />
+                        })    
+                        }
+                    </Row>
+                </Container>
+
+                <Container fluid>
+                    <Row>
+                        { this.state.reviews.map( (review, i) => {
+                            return <Review review={ review } key={ i } />
+                            })    
+                        }
+                    </Row>
+                </Container>
+
                 <button onClick={ this.toggleReviewForm }>
                         { this.state.addReview
                             ? 'Cancel'
                             : 'Add Review'
                         }
                 </button>
+
+                <button onClick={ this.toggleProductForm }>
+                        { this.state.addProduct
+                            ? 'Cancel'
+                            : 'Add Product'
+                        }
+                </button>
+
+                <button onClick={ this.toggleEditForm }>
+                        { this.state.isEdit
+                            ? 'Cancel'
+                            : 'Edit'
+                        }
+                </button>
+
                     { this.state.addReview
                     ? <ReviewForm 
                         restaurant={ this.props.match.params.id }
@@ -120,12 +154,6 @@ export default class ShowRestaurant extends Component {
                     }
                 
                 
-                <button onClick={ this.toggleProductForm }>
-                        { this.state.addProduct
-                            ? 'Cancel'
-                            : 'Add Product'
-                        }
-                </button>
                     { this.state.addProduct
                     ? <ProductForm 
                         restaurant={ this.props.match.params.id }
@@ -134,34 +162,28 @@ export default class ShowRestaurant extends Component {
                     : null
                     }
 
-                {/* <form onSubmit={ this.addNewReview }>
-                        <div>
-                            <label>Description:   </label>
-                            <textarea name="comment" rows="10" cols="30"  onChange={ this.inputChange }>
-                            </textarea>
-                        </div>
-                        <RatingSelector inputChange={ this.inputChange }/>
-                        <div>
-                            <input type="submit" value="Add review" />
-                        </div>
-                </form> */}
-
-                <button onClick={ this.toggleEditForm }>
-                        { this.state.isEdit
-                            ? 'Cancel'
-                            : 'Edit'
-                        }
-                </button>
                     { this.state.isEdit
                     ? < RestaurantForm 
-                        restaurant={ this.state.restaurant }
-                        isEdit={ this.state.isEdit }
-                        getRestaurant={ this.getRestaurant }
+                    restaurant={ this.state.restaurant }
+                    isEdit={ this.state.isEdit }
+                    getRestaurant={ this.getRestaurant }
                     />
                     : null
-                    }
+                }
                     
-            </div>
+                
+                                {/* <form onSubmit={ this.addNewReview }>
+                                        <div>
+                                            <label>Description:   </label>
+                                            <textarea name="comment" rows="10" cols="30"  onChange={ this.inputChange }>
+                                            </textarea>
+                                        </div>
+                                        <RatingSelector inputChange={ this.inputChange }/>
+                                        <div>
+                                            <input type="submit" value="Add review" />
+                                        </div>
+                                </form> */}
+            </Container>
         )
     }
 }
