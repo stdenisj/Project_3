@@ -10,7 +10,6 @@ export default class ProductForm extends Component {
             price: 0,
             restaurant: this.props.restaurant,
         },
-        isEdit: false,
     }
 
     inputChange = (event) => {
@@ -24,23 +23,27 @@ export default class ProductForm extends Component {
 
     addNewProduct = (event) => {
         event.preventDefault();
-        axios.post('/api/products', this.state.productForm).then( () => {
-            this.props.getProducts();
-        });
+        axios.post('/api/products', this.state.productForm).then( this.props.getProducts() );
     };
 
-    submitEditedProduct = () => {
-        axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( () => {
-            this.props.getProducts();
-        });
+    submitEditedProduct = (event) => {
+        event.preventDefault();
+        axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( this.props.getProducts() );
     };
 
+    deleteProduct = (event) => {
+        event.preventDefault();
+        axios.delete(`/api/products/${this.props.product._id}`).then( this.props.getProducts() );
+    };
 
+    componentDidMount() {
+        this.props.isEdit ? this.setState({productForm: { ...this.props.product }}) : this.setState({productForm: this.state.productForm})
+    }
 
     render() {
         return (
             <div>
-                <form onSubmit={ this.state.isEdit ? this.submitEditedProduct : this.addNewProduct } >
+                <form onSubmit={ this.props.isEdit ? this.submitEditedProduct : this.addNewProduct } >
                     <div>
                         <div>
                             <label>Name:   </label>
@@ -55,7 +58,7 @@ export default class ProductForm extends Component {
                             <textarea 
                                 name="description" 
                                 rows="5" 
-                                cols="30"  
+                                cols="25"  
                                 onChange={ this.inputChange } 
                             />
                         </div>
@@ -78,6 +81,10 @@ export default class ProductForm extends Component {
                         <input type="submit" value="Add Product" />
                     </div>
                 </form>
+                { this.props.isEdit
+                    ? <button onClick={ this.deleteProduct }>Delete</button>
+                    : null
+                }
             </div>
         )
     }

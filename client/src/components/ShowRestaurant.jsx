@@ -22,7 +22,9 @@ export default class ShowRestaurant extends Component {
         //     restaurant: this.props.match.params.id,
         // },
         products: [],
+        productToEdit: {},
         reviews: [],
+        ReviewToEdit: {},
         restaurant: {},
     };
 
@@ -99,6 +101,13 @@ export default class ShowRestaurant extends Component {
         });
     };
 
+    toggleEditProduct = (product) => {
+        this.setState({
+            productToEdit: product,
+            addProduct: true,
+        });
+    };
+
 
     render() {
         return (
@@ -110,9 +119,13 @@ export default class ShowRestaurant extends Component {
                     <Col md='auto'>
                         <Row>
                             { this.state.products.map( (product, i) => {
-                                return <Product product={ product } key={ i } />
+                                return <Product 
+                                            product={ product } 
+                                            key={ i }
+                                            toggleEditProduct={ this.toggleEditProduct } 
+                                        />
                             })    
-                        }
+                            }
                         </Row>
                     </Col>
 
@@ -128,12 +141,10 @@ export default class ShowRestaurant extends Component {
                 </Row> 
 
                 <Container fluid>
-                    <Row>
                         { this.state.reviews.map( (review, i) => {
                             return <Review review={ review } key={ i } />
                             })    
                         }
-                    </Row>
                 </Container>
 
                 <button onClick={ this.toggleReviewForm }>
@@ -167,7 +178,9 @@ export default class ShowRestaurant extends Component {
                 
                 
                     { this.state.addProduct
-                    ? <ProductForm 
+                    ? <ProductForm
+                        isEdit={ this.state.isEdit }
+                        productToEdit={ this.state.productToEdit }
                         restaurant={ this.props.match.params.id }
                         getProducts={ this.getProducts }
                     />

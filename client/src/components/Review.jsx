@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 
 export default class Review extends Component {
     render() {
@@ -8,13 +8,15 @@ export default class Review extends Component {
         // const formatedDate = date.toString().toDateString()
 
         return (
-            <Col lg={ true }>
-                <div>{ comment }</div>
-                <div>
-                    <span>{ date }</span>
-                    <span>{ rating }</span>
-                </div>
-            </Col>
+            <Row>
+                <Col>
+                    <Row>{ comment }</Row>
+                    <Row>
+                        <span>{ date }</span>
+                        <span>{ rating }</span>
+                    </Row>
+                </Col>
+            </Row>
         )
     }
 }
