@@ -9,7 +9,7 @@ export default class Navigation extends Component {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>
-                    <a href="#login">Login</a>
+                        <a href="#login">Login</a>
                     </Navbar.Text>
                 </Navbar.Collapse>
             </Navbar>

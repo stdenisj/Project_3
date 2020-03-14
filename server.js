@@ -19,6 +19,7 @@ const app = express()
 const { restaurantRouter } = require('./controllers/restaurant')
 const { reviewRouter } = require('./controllers/review')
 const { productRouter } = require('./controllers/product')
+const { userRouter } = require('./controllers/user')
 
 
 /* Step 3
@@ -54,6 +55,7 @@ app.use(express.static(`${__dirname}/client/build`))
 app.use('/api/restaurants', restaurantRouter);
 app.use('/api/reviews', reviewRouter);
 app.use('/api/products', productRouter);
+app.use('/api/users', userRouter)
 
 /* Step 5
  *
