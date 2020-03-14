@@ -11,6 +11,7 @@ export default class RestaurantForm extends Component {
                 state: '',
                 zipCode: 0,
             },
+            website: '',
             image: '',
             description: '',
         },
@@ -68,7 +69,7 @@ export default class RestaurantForm extends Component {
 
     render() {
         
-        const {name, location: {street, state, zipcode}, image, description} = this.state.form
+        const {name, location: {street, state, zipcode}, website, image, description} = this.state.form
             
         return (
             this.state.isRedirect
@@ -118,6 +119,15 @@ export default class RestaurantForm extends Component {
                             name='image' 
                             onChange={ this.inputChange }
                             value={ image }
+                        />
+                    </div>
+                    <div>
+                        <label>Website:   </label>
+                        <input 
+                            type='text' 
+                            name='website' 
+                            onChange={ this.inputChange } 
+                            value={ website }
                         />
                     </div>
                     <div>

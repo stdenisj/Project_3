@@ -7,7 +7,7 @@ import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
 import { Link } from 'react-router-dom'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Image } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -60,9 +60,8 @@ export default class ShowRestaurant extends Component {
 
     toggleRestaurantForm = (event) => {
         const flagStatus = !this.state.restaurantForm;
-        this.setState({
-            restaurantForm: flagStatus,
-        });
+        this.setState({ restaurantForm: flagStatus });
+        this.toggleEditForm();
     };
 
     toggleEditForm = (event) => {
@@ -102,7 +101,7 @@ export default class ShowRestaurant extends Component {
                         <Link to='/'>Home</Link>
                     </Row>
                 <Row>
-                    <Col md='auto'>
+                    <Col sm={8}>
                         <Row>
                             { this.state.products.map( (product, i) => {
                                 return <Product 
@@ -115,14 +114,18 @@ export default class ShowRestaurant extends Component {
                         </Row>
                     </Col>
 
-                    <Col >
-                        <Row><img  
-                                className='ProductImage'
+                    <Col sm={4}>
+                        <Row >
+                            <Image  
+                                // className='ProductImage'
                                 src={ this.state.restaurant.image} 
-                                alt={ this.state.restaurant.name }/>
+                                alt={ this.state.restaurant.name }
+                                fluid
+                            />
                         </Row>
                         <Row className='text-justify'>{ this.state.restaurant.name}</Row>
                         <Row>{ this.state.restaurant.description}</Row>
+                        <Row>{ this.state.restaurant.website }</Row>
                     </Col>
                 </Row> 
 
