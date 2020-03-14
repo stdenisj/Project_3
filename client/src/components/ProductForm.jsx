@@ -12,6 +12,15 @@ export default class ProductForm extends Component {
         },
     }
 
+    formType = () => {
+        if( this.props.isEdit ) {
+            const editedProduct = { ...this.props.product }
+            this.setState({
+                productForm: editedProduct,
+            });
+        };
+    };
+
     inputChange = (event) => {
         const changedInput = event.target.name;
         const updatedNewProduct = { ...this.state.productForm };
@@ -37,10 +46,11 @@ export default class ProductForm extends Component {
     };
 
     componentDidMount() {
-        this.props.isEdit ? this.setState({productForm: { ...this.props.product }}) : this.setState({productForm: this.state.productForm})
-    }
+        this.formType();
+    };
 
     render() {
+        const { name, description, img, price } = this.state.productForm
         return (
             <div>
                 <form onSubmit={ this.props.isEdit ? this.submitEditedProduct : this.addNewProduct } >
@@ -51,6 +61,7 @@ export default class ProductForm extends Component {
                                 type='text' 
                                 name='name' 
                                 onChange={ this.inputChange }
+                                value={ name }
                             />
                         </div>
                         <div>
@@ -59,7 +70,8 @@ export default class ProductForm extends Component {
                                 name="description" 
                                 rows="5" 
                                 cols="25"  
-                                onChange={ this.inputChange } 
+                                onChange={ this.inputChange }
+                                value={ description } 
                             />
                         </div>
                         <div>
@@ -68,6 +80,7 @@ export default class ProductForm extends Component {
                                 type='text' 
                                 name='img' 
                                 onChange={ this.inputChange }
+                                value={ img }
                             />
                         </div>
                         <div>
@@ -76,6 +89,7 @@ export default class ProductForm extends Component {
                                 type='number' 
                                 name='price' 
                                 onChange={ this.inputChange }
+                                value={ price }
                             />
                         </div>
                         <input type="submit" value="Add Product" />

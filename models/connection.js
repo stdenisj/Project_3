@@ -30,4 +30,6 @@ mongoose.connect(connectionString, { useNewUrlParser: true})
  * across our different controllers.
  *
  */
+mongoose.set('useFindAndModify', false);
+
 module.exports = mongoose

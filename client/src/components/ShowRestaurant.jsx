@@ -16,16 +16,12 @@ export default class ShowRestaurant extends Component {
         addProduct: false,
         addReview: false,
         isEdit: false,
-        // newReview: {
-        //     rating: '***',
-        //     comment: '',
-        //     restaurant: this.props.match.params.id,
-        // },
         products: [],
         productToEdit: {},
+        restaurant: {},
+        restaurantForm: false,
         reviews: [],
         ReviewToEdit: {},
-        restaurant: {},
     };
 
     getProducts = () => {
@@ -55,29 +51,18 @@ export default class ShowRestaurant extends Component {
             });
         });
     };
-    
-    // addNewReview = (event) => {
-    //     event.preventDefault();
-    //     axios.post('/api/reviews', this.state.newReview).then( () => {
-    //         this.getReviews();
-    //     });
-
-    // }
-
-    // inputChange = (event) => {
-    //     const changedInput = event.target.name;
-    //     const updatedNewReview = { ...this.state.newReview };
-    //     updatedNewReview[changedInput] = event.target.value;
-    //     this.setState({
-    //         newReview: updatedNewReview,
-    //     });
-    // };
-
 
     componentDidMount() {
         this.getRestaurant();
         this.getReviews();
         this.getProducts()
+    };
+
+    toggleRestaurantForm = (event) => {
+        const flagStatus = !this.state.restaurantForm;
+        this.setState({
+            restaurantForm: flagStatus,
+        });
     };
 
     toggleEditForm = (event) => {
@@ -103,6 +88,7 @@ export default class ShowRestaurant extends Component {
 
     toggleEditProduct = (product) => {
         this.setState({
+            isEdit: true,
             productToEdit: product,
             addProduct: true,
         });
@@ -142,7 +128,11 @@ export default class ShowRestaurant extends Component {
 
                 <Container fluid>
                         { this.state.reviews.map( (review, i) => {
-                            return <Review review={ review } key={ i } />
+                            return <Review 
+                                review={ review } 
+                                key={ i } 
+                                getReviews={ this.getReviews }
+                            />
                             })    
                         }
                 </Container>
@@ -161,8 +151,8 @@ export default class ShowRestaurant extends Component {
                         }
                 </button>
 
-                <button onClick={ this.toggleEditForm }>
-                        { this.state.isEdit
+                <button onClick={ this.toggleRestaurantForm }>
+                        { this.state.restaurantForm
                             ? 'Cancel'
                             : 'Edit'
                         }
@@ -180,34 +170,21 @@ export default class ShowRestaurant extends Component {
                     { this.state.addProduct
                     ? <ProductForm
                         isEdit={ this.state.isEdit }
-                        productToEdit={ this.state.productToEdit }
+                        product={ this.state.productToEdit }
                         restaurant={ this.props.match.params.id }
                         getProducts={ this.getProducts }
                     />
                     : null
                     }
 
-                    { this.state.isEdit
+                    { this.state.restaurantForm
                     ? < RestaurantForm 
-                    restaurant={ this.state.restaurant }
-                    isEdit={ this.state.isEdit }
-                    getRestaurant={ this.getRestaurant }
+                        restaurant={ this.state.restaurant }
+                        isEdit={ this.state.isEdit }
+                        getRestaurant={ this.getRestaurant }
                     />
                     : null
                 }
-                    
-                
-                                {/* <form onSubmit={ this.addNewReview }>
-                                        <div>
-                                            <label>Description:   </label>
-                                            <textarea name="comment" rows="10" cols="30"  onChange={ this.inputChange }>
-                                            </textarea>
-                                        </div>
-                                        <RatingSelector inputChange={ this.inputChange }/>
-                                        <div>
-                                            <input type="submit" value="Add review" />
-                                        </div>
-                                </form> */}
             </Container>
         )
     }

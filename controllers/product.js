@@ -21,7 +21,7 @@ productRouter.post('/', (req, res) => {
 });
 
 productRouter.put('/:productId', (req, res) => {
-    Product.findByIdAndUpdate(req.params.productId, rec.body).then( () => {
+    Product.findByIdAndUpdate(req.params.productId, req.body).then( () => {
         res.status(200).end();
     });
 });
