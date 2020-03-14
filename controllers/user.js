@@ -2,15 +2,22 @@ const express = require('express');
 const User = require('../models/user');
 const userRouter = express.Router();
 
-userRouter.get('/', (req, res) => {
-    const inputUser = req.body.inputuser;
-    const inputPassword = req.body.inputPassword;
-    User.find( { userName: inputUser }, { password: inputPassword }).then( (user) => {
-        res.json(user);
-    });
+userRouter.get('/:userName/:password', (req, res) => {
+    const searchName = req.params.userName
+    const searchPassword = req.params.password
+    User.find().then( (users) => {
+        for (user of users) {
+            if( user.userName == searchName && user.password == searchPassword) {
+                const sentUser = { ...user._doc }
+                sentUser.password = ''
+                res.json(sentUser)  
+            } else {
+            } 
+        }
+    }).catch( (e) => console.log(e))
 });
 
-userRouter.post('/', (req, res) => {
+userRouter.post('/', (req, res) => {   
     User.create(req.body).then( () => { res.status(200).end()})
 })
 
