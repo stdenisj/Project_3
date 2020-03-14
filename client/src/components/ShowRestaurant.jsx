@@ -6,7 +6,6 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
-import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
 
@@ -97,9 +96,6 @@ export default class ShowRestaurant extends Component {
     render() {
         return (
             <Container fluid>
-                    <Row>
-                        <Link to='/'>Home</Link>
-                    </Row>
                 <Row>
                     <Col sm={8}>
                         <Row>
