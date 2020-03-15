@@ -15,8 +15,7 @@ export default class Review extends Component {
         const { date, comment, rating } = this.props.review
 
         return (
-            <Row className='Review'>
-                <Col>
+                <Col className='Review'>
                     <Row>{ comment }</Row>
                     <Row>
                         <span>{ date }</span>
@@ -26,7 +25,6 @@ export default class Review extends Component {
                         <button onClick={ this.deleteReview }>Delete</button>
                     </Row>
                 </Col>
-            </Row>
         )
     }
 }

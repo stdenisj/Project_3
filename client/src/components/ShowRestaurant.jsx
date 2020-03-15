@@ -6,7 +6,7 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
-import { Container, Row, Col, Image, CardDeck, Card } from 'react-bootstrap';
+import { Container, Row, Col, Image, CardColumns, Card } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -98,30 +98,44 @@ export default class ShowRestaurant extends Component {
         return (
             <Container fluid>
                 <Row>
-                    <Col lg="auto">
-                        <CardDeck>
-                            { this.state.products.map( (product, i) => {
-                                return <Product 
-                                            product={ product } 
-                                            key={ i }
-                                            toggleEditProduct={ this.toggleEditProduct } 
-                                        />
-                            })    
-                            }
-                        </CardDeck>
-                    </Col>
                     <Col>
-                        <Card>
-                            <Card.Img variant="top" src={ this.state.restaurant.image}  alt={ this.state.restaurant.name }/>
-                            <Card.Body>
-                                <Card.Title>{ this.state.restaurant.name}</Card.Title>
-                                <Card.Text>
-                                { this.state.restaurant.description}<br/>
-                                { this.state.restaurant.website }
-                                </Card.Text>
-                                
-                            </Card.Body>
-                        </Card>
+                    <Row className="overflow-auto" style={{maxHeight: '400px'}}>
+                        <CardColumns>
+                        { this.state.products.map( (product, i) => {
+                            return <Product 
+                            product={ product } 
+                            key={ i }
+                            toggleEditProduct={ this.toggleEditProduct } 
+                            />
+                        })    
+                    }
+                        </CardColumns>
+                    </Row>
+                    <Row>
+                            { this.state.reviews.map( (review, i) => {
+                                return <Review 
+                                    review={ review } 
+                                    key={ i } 
+                                    getReviews={ this.getReviews }
+                                    />
+                                })    
+                            }
+                    </Row>
+                </Col>
+                <Col lg='4'>
+                    <Card>
+                       <Card.Img variant="top" src={ this.state.restaurant.image}  alt={ this.state.restaurant.name }/>
+                       <Card.Body>
+                           <Card.Title>{ this.state.restaurant.name}</Card.Title>
+                           <Card.Text>
+                           { this.state.restaurant.description}<br/>
+                           { this.state.restaurant.website }
+                           </Card.Text>
+                           
+                       </Card.Body>
+                   </Card>
+                </Col> 
+            </Row>
 {/*                             
                         <Row >
                             <Image  
@@ -134,10 +148,9 @@ export default class ShowRestaurant extends Component {
                         <Row className='text-justify'>{ this.state.restaurant.name}</Row>
                         <Row>{ this.state.restaurant.description}</Row>
                         <Row>{ this.state.restaurant.website }</Row> */}
-                    </Col> 
-                </Row>  
+                {/* </Row>   */}
 
-
+{/* 
                 <Container fluid>
                         { this.state.reviews.map( (review, i) => {
                             return <Review 
@@ -147,7 +160,7 @@ export default class ShowRestaurant extends Component {
                             />
                             })    
                         }
-                </Container>
+                </Container> */}
 
                 <button onClick={ this.toggleReviewForm }>
                         { this.state.addReview

@@ -10,12 +10,12 @@ export default class Product extends Component {
         return (
 
 
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={ img } alt={ name } />
+            <Card style={{ width: '15rem' }} className="card text-center">
+            <Card.Img variant="top" src={ img } alt={ name } height='200px'/>
             <Card.Body>
                 <Card.Title>{ name }</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Price: ${ price }</Card.Subtitle>
                 <Card.Text>
-                    Price: ${ price }<br/>
                     { description }
                 </Card.Text>
                 <Button variant="primary" onClick={ this.editItem }>Edit Product</Button>
