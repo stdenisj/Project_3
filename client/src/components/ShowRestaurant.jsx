@@ -111,7 +111,7 @@ export default class ShowRestaurant extends Component {
                     }
                         </CardColumns>
                     </Row>
-                    <Row>
+                    <Row className="overflow-auto" style={{maxHeight: '400px'}}>
                             { this.state.reviews.map( (review, i) => {
                                 return <Review 
                                     review={ review } 
@@ -136,32 +136,8 @@ export default class ShowRestaurant extends Component {
                    </Card>
                 </Col> 
             </Row>
-{/*                             
-                        <Row >
-                            <Image  
-                                className='ProductImage'
-                                src={ this.state.restaurant.image} 
-                                alt={ this.state.restaurant.name }
-                                fluid
-                            />
-                        </Row>
-                        <Row className='text-justify'>{ this.state.restaurant.name}</Row>
-                        <Row>{ this.state.restaurant.description}</Row>
-                        <Row>{ this.state.restaurant.website }</Row> */}
-                {/* </Row>   */}
 
-{/* 
-                <Container fluid>
-                        { this.state.reviews.map( (review, i) => {
-                            return <Review 
-                                review={ review } 
-                                key={ i } 
-                                getReviews={ this.getReviews }
-                            />
-                            })    
-                        }
-                </Container> */}
-
+            
                 <button onClick={ this.toggleReviewForm }>
                         { this.state.addReview
                             ? 'Cancel'

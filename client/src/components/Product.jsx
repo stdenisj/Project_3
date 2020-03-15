@@ -8,9 +8,7 @@ export default class Product extends Component {
     render() {
         const { name, description, price, img } = this.props.product
         return (
-
-
-            <Card style={{ width: '15rem' }} className="card text-center">
+            <Card style={{ width: '15rem' }} className="card text-center" id='ProductCard'>
             <Card.Img variant="top" src={ img } alt={ name } height='200px'/>
             <Card.Body>
                 <Card.Title>{ name }</Card.Title>

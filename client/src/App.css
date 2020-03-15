@@ -32,21 +32,10 @@
   }
 }
 
-.Product {
-  margin: 3vh 3vw;
-  border: 1px solid grey;
-  border-radius: 3px;
-}
 
-.Review {
-  margin: 3vh 3vw;
-  border: 1px solid black;
+#ProductCard {
+  margin: 0px 30px;
 }
-
-.RestaurantDetails {
-  border: 1px solid green;
-}
-
 
 .ProductImageCard {
   width: 100%;
