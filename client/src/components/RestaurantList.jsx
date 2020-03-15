@@ -46,7 +46,7 @@ export default class RestaurantList extends Component {
             
             <div>
                 { this.state.restaurants.map( (restaurant, i) => {
-                    return <Restaurant restaurant={restaurant} key={i} />
+                    return <Restaurant restaurant={restaurant} key={i} user={ this.props.user } />
                 })
                 }
 

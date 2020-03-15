@@ -12,6 +12,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
 export default class ShowRestaurant extends Component {
     
     state = {
+        currentUser: this.props.location.user,
         addProduct: false,
         addReview: false,
         isEdit: false,
@@ -57,20 +58,20 @@ export default class ShowRestaurant extends Component {
         this.getProducts()
     };
 
-    toggleRestaurantForm = (event) => {
+    toggleRestaurantForm = () => {
         const flagStatus = !this.state.restaurantForm;
         this.setState({ restaurantForm: flagStatus });
         this.toggleEditForm();
     };
 
-    toggleEditForm = (event) => {
+    toggleEditForm = () => {
         const flagStatus = !this.state.isEdit;
         this.setState({
             isEdit: flagStatus,
         });
     };
 
-    toggleReviewForm = (event) => {
+    toggleReviewForm = () => {
         const flagStatus = !this.state.addReview;
         this.setState({
             addReview: flagStatus,
@@ -113,7 +114,7 @@ export default class ShowRestaurant extends Component {
                     <Col sm={4}>
                         <Row >
                             <Image  
-                                // className='ProductImage'
+                                className='ProductImage'
                                 src={ this.state.restaurant.image} 
                                 alt={ this.state.restaurant.name }
                                 fluid

@@ -20,13 +20,14 @@ import './App.css';
 
   render() {
     const loginComponent = () => (<LoginForm setUser={this.setUser}/>)
-   
+    const RestaurantListComponent = () => (<RestaurantList user={this.state.currentUser} />)
+    const NavigationComponent = () => (<Navigation user={this.state.currentUser} />)
     return (
-      <div className="App">
-        <Navigation />
+      <div className="App" id='Application'>
         <Router>
+          <Route path='/' render={ NavigationComponent } />
           <Switch>
-            <Route exact path="/" component={ RestaurantList }/>
+            <Route exact path="/" render={ RestaurantListComponent }/>
             <Route path="/restaurants/:id" component={ ShowRestaurant } />
             <Route path="/login" render={ loginComponent } />
           </Switch>
