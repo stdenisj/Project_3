@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Restaurant from './Restaurant'
 import RestaurantForm from './RestaurantForm'
-import axios from 'axios'
 
 export default class RestaurantList extends Component {
     state = {
@@ -15,7 +14,7 @@ export default class RestaurantList extends Component {
             image: '',
             description: '',
         },
-        restaurants: [],
+        restaurants: this.props.restaurants,
         addRestaurant: false,
         
     };
@@ -26,26 +25,13 @@ export default class RestaurantList extends Component {
             addRestaurant: status
         });
     };
-    
-    getRestaurants = () => {
-        axios.get('/api/restaurants/').then( (response) => {
-            const foundRestaurants = response.data;
-            this.setState({
-                restaurants: foundRestaurants
-            });
-        });
-    };
 
-    componentDidMount() {
-        this.getRestaurants();
-    };
-    
     render() {
         
         return (
             
             <div>
-                { this.state.restaurants.map( (restaurant, i) => {
+                { this.props.restaurants.map( (restaurant, i) => {
                     return <Restaurant restaurant={restaurant} key={i} user={ this.props.user } />
                 })
                 }

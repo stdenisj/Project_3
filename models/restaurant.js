@@ -10,6 +10,7 @@ const Restaurant = new Schema({
     },
     location: {
         street: String,
+        city: String,
         state: String,
         zipCode: Number,
     },

@@ -13,6 +13,7 @@ restaurantRouter.get('/', (req, res) => {
   });
 });
 
+
 restaurantRouter.get('/:id', (req, res) => {
   Restaurant.findById(req.params.id).populate( 'reviews' ).then( (restaurant) => {
     res.json(restaurant);
@@ -20,6 +21,33 @@ restaurantRouter.get('/:id', (req, res) => {
     console.log(e)
   });
 });
+
+restaurantRouter.get('/:field/:input', (req, res) => {
+  const searchInput = req.params.input;
+  Restaurant.find().then( (restaurants) => {
+    const restaurantsData = restaurants
+    const foundRestaurants = []
+    for(restaurant of restaurants) {
+    if (restaurant.name === searchInput) {
+      foundRestaurants.push(restaurant);
+    } else if(restaurant.location.state === searchInput) {
+      foundRestaurants.push(restaurant);
+     } else if (restaurant.location.city === searchInput) {
+      foundRestaurants.push(restaurant);
+     } else if (restaurant.location.zipCode === searchInput) {
+      foundRestaurants.push(restaurant);
+     } else { null }
+    }
+    if(foundRestaurants.length === 0) {
+      res.json(restaurantsData)
+    } else {
+    res.json(foundRestaurants);
+    }
+  }).catch( (e) => {
+    console.log(e)
+  });
+})
+
 
 restaurantRouter.post('/', (req, res) => {
   Restaurant.create(req.body).then( () => {

@@ -6,7 +6,7 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
-import { Container, Row, Col, CardColumns, Card } from 'react-bootstrap';
+import { Container, Row, Col, CardDeck, Card } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -99,8 +99,20 @@ export default class ShowRestaurant extends Component {
             <Container fluid>
                 <Row>
                     <Col>
-                    <Row className="overflow-auto" style={{maxHeight: '400px'}}>
-                        <CardColumns>
+                        <Card>
+                           <Card.Img variant="top" src={ this.state.restaurant.image}  alt={ this.state.restaurant.name }/>
+                           <Card.Body>
+                               <Card.Title>{ this.state.restaurant.name}</Card.Title>
+                               <Card.Text>
+                               { this.state.restaurant.description}<br/>
+                               <a href={this.state.restaurant.website}>{ this.state.restaurant.website }</a>
+                               </Card.Text> 
+                           </Card.Body>
+                       </Card>
+                    </Col> 
+                    <Col style={{Height: '50vw', width: '75vw'}}>
+                    <Row className="flex-nowrap overflow-auto" >
+                        <CardDeck className='card-deck-scrollable'>
                         { this.state.products.map( (product, i) => {
                             return <Product 
                             product={ product } 
@@ -109,7 +121,7 @@ export default class ShowRestaurant extends Component {
                             />
                         })    
                     }
-                        </CardColumns>
+                        </CardDeck>
                     </Row>
                     <Row className="overflow-auto" style={{maxHeight: '400px'}}>
                             { this.state.reviews.map( (review, i) => {
@@ -123,19 +135,6 @@ export default class ShowRestaurant extends Component {
                             }
                     </Row>
                 </Col>
-                <Col>
-                    <Card>
-                       <Card.Img variant="top" src={ this.state.restaurant.image}  alt={ this.state.restaurant.name }/>
-                       <Card.Body>
-                           <Card.Title>{ this.state.restaurant.name}</Card.Title>
-                           <Card.Text>
-                           { this.state.restaurant.description}<br/>
-                           <a href={this.state.restaurant.website}>{ this.state.restaurant.website }</a>
-                           </Card.Text>
-                           
-                       </Card.Body>
-                   </Card>
-                </Col> 
             </Row>
 
             

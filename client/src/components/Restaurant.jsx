@@ -9,6 +9,7 @@ export default class Restaurant extends Component {
                 <div>
                     <Link to={{
                         pathname: `/restaurants/${this.props.restaurant._id}`,
+                        restaurant: this.props.restaurant,
                         user: this.props.user 
                     }}>
                         <Image 
@@ -20,7 +21,10 @@ export default class Restaurant extends Component {
                     </Link>
                 </div>
                 <div>
-                    <Link to={`/restaurants/${this.props.restaurant._id}`}>
+                    <Link to={{
+                        pathname: `/restaurants/${this.props.restaurant._id}`,
+                        restaurant: this.props.restaurant,
+                        user: this.props.user }}>
                         <h2>{ this.props.restaurant.name}</h2>
                     </Link>
                 </div>

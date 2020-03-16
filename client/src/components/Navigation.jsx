@@ -8,18 +8,6 @@ export default class Navigation extends Component {
         redirect: false
     }
 
-
-    // setUserStatus = () => this.props.user.userName === undefined
-    //     ? null
-    //     : this.setState({
-    //         user: this.props.user,
-    //         loggedIn: true,
-    //     });
-
-    // componentWillMount() {
-    //     this.setUserStatus();
-    // }
-
     logOutUser = () => {
         this.setState({ redirect: true });
         this.props.logOutUser()
