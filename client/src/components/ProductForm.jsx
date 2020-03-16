@@ -32,12 +32,18 @@ export default class ProductForm extends Component {
 
     addNewProduct = (event) => {
         event.preventDefault();
-        axios.post('/api/products', this.state.productForm).then( this.props.getProducts() );
+        axios.post('/api/products', this.state.productForm).then( () => {
+            this.props.toggleProductsForm();
+            this.props.getProducts() 
+        });
     };
 
     submitEditedProduct = (event) => {
         event.preventDefault();
-        axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( this.props.getProducts() );
+        axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( () => {
+            this.props.toggleProductsForm();
+            this.props.getProducts() 
+        });
     };
 
     deleteProduct = (event) => {

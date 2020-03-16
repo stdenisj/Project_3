@@ -10,11 +10,14 @@ const User = new Schema({
         type: String,
         required: true,
     },
-    // name: {
-    //     type: String,
-    //     required: true,
-    // },
-    adminStatus: Boolean,
+    name: {
+        type: String,
+    },
+    profileImg: String,
+    adminStatus: {
+        type: Boolean,
+        default: 'false'
+    }
 });
 
 module.exports = mongoose.model('User', User)

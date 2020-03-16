@@ -7,9 +7,12 @@ export default class LoginForm extends Component {
         userForm: {
             userName: '',
             password: '',
+            name: '',
+            profileImg: ''
         },
         currentUser: {},
-        isRedirect: false
+        isRedirect: false,
+        isAddUesr: false,
     }
 
 
@@ -21,8 +24,20 @@ export default class LoginForm extends Component {
             userForm: updatedUserForm,
         });
     };
+    
+    addNewUser = (event) => {
+        event.preventDefault();
+        axios.post(`/api/users/`, this.state.userForm).then( () => {
+            const createdUser = { ...this.state.userForm };
+            createdUser.password = '';
+            this.setState({
+                currentUser: createdUser,
+                isRedirect: true
+            });
+        });
+    };
 
-    addUser = (event) => {
+    loginUser = (event) => {
         event.preventDefault();
         const { userName, password } = this.state.userForm
         axios.get(`/api/users/${userName}/${password}`).then( 
@@ -36,7 +51,13 @@ export default class LoginForm extends Component {
             
         };
 
+    toggleNewUserForm = () => {
+        this.setState({
+            isAddUesr: !this.state.isAddUesr
+        });
+    };
 
+    
     render() {
         return (
             <div>
@@ -44,7 +65,9 @@ export default class LoginForm extends Component {
                 ? <Redirect to='/' user={this.state.currentUser} />
                 : null
                 }
-                <form onSubmit={ this.addUser}>
+                <form onSubmit={ this.isAddUesr
+                                ? this.addNewUser 
+                                : this.loginUser }>
                     <div>
                         <label>UserName:   </label>
                         <input type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name' />
@@ -53,8 +76,32 @@ export default class LoginForm extends Component {
                         <label>Password:   </label>
                         <input type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
                     </div>
-                        <input type='submit' value='Log In' />
+                    {this.state.isAddUesr
+                    ? <div>
+                        <div>
+                            <label>Name:   </label>
+                            <input type='text' name='name' onChange={ this.inputChange} placeholder='Enter Your Name' />
+                        </div>
+                        <div>                        
+                            <label>Profile Image link:   </label>
+                            <input type='text' name='profileImg' onChange={ this.inputChange} placeholder='Enter Link to profile picture' />
+                        </div>
+                    </div>
+                    : null
+                    }
+                        <input type='submit' value={ this.state.isAddUesr
+                                                    ? 'Create User'
+                                                    : 'Log In' 
+                                                }
+                        />
                 </form>
+
+                <button onClick={ this.toggleNewUserForm }>
+                    {this.state.isAddUesr
+                    ?'Cancel'
+                    :'Create Account'
+                    }
+                </button>
             </div>
         )
     }

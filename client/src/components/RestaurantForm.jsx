@@ -49,6 +49,7 @@ export default class RestaurantForm extends Component {
     submitEditForm = (event) => {
     event.preventDefault();
         axios.put(`/api/restaurants/${this.props.restaurant._id} `, this.state.form).then( () => {
+            this.props.toggleRestaurantForm()
             this.props.getRestaurant()
         });
     };

@@ -12,10 +12,11 @@ export default class Review extends Component {
     };
 
     render() {
-        const { date, comment, rating } = this.props.review
+        const { date, comment, rating, reviewerPic, reviewerUserName} = this.props.review
 
         return (
                 <Col className='Review'>
+                    <Row>{ reviewerUserName }</Row>
                     <Row>{ comment }</Row>
                     <Row>
                         <span>{ date }</span>

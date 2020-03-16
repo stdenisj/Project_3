@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 export default class Navigation extends Component {
     state = {
@@ -19,18 +20,33 @@ export default class Navigation extends Component {
     componentWillMount() {
         this.setUserStatus();
     }
+
+    logOutUser = () => {
+        this.setState({ user: {} });
+        this.props.logOutUser();
+    };
+    
     render() {
         return (
             <Navbar>
                 <Link to='/' ><Navbar.Brand>Home</Navbar.Brand></Link>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
-                    { this.state.loggedIn        
+                    { this.props.user.userName !== undefined 
                     ? <Navbar.Text>
-                        <Link to='/login'>Hello {this.state.user.userName}</Link>
+                        <Link to='/'>      
+                            <img alt="Hello User"
+                                 src={this.state.user.profileImg}
+                                 width="30"
+                                 height="30"
+                            /></Link>
+                        <Button onClick={this.logOutUser}>Log Out</Button>
                     </Navbar.Text>
                     : <Navbar.Text>
-                        <Link to='/login'>Login</Link>
+                        <Link to={{
+                            pathname: '/login',
+                            user: this.props.user}}
+                        >Login</Link>
                     </Navbar.Text>
                     }
                 </Navbar.Collapse>

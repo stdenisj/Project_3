@@ -5,6 +5,9 @@ import axios from 'axios'
 export default class ReviewForm extends Component {
     state = {
         newReview: {
+            user: this.props.user._id,
+            reviewerUserName: this.props.user.userName,
+            reviewerPic: this.props.user.profileImg,
             rating: '***',
             comment: '',
             restaurant: this.props.restaurant,
@@ -14,6 +17,7 @@ export default class ReviewForm extends Component {
     addNewReview = (event) => {
         event.preventDefault();
         axios.post('/api/reviews', this.state.newReview).then( () => {
+            this.props.toggleReviewForm();
             this.props.getReviews();
         });
     };

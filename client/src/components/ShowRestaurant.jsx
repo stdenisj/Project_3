@@ -6,7 +6,7 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import ProductForm from './ProductForm'
 import Product from './Product'
-import { Container, Row, Col, Image, CardColumns, Card } from 'react-bootstrap';
+import { Container, Row, Col, CardColumns, Card } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -122,7 +122,7 @@ export default class ShowRestaurant extends Component {
                             }
                     </Row>
                 </Col>
-                <Col lg='4'>
+                <Col>
                     <Card>
                        <Card.Img variant="top" src={ this.state.restaurant.image}  alt={ this.state.restaurant.name }/>
                        <Card.Body>
@@ -163,6 +163,8 @@ export default class ShowRestaurant extends Component {
                     ? <ReviewForm 
                         restaurant={ this.props.match.params.id }
                         getReviews={ this.getReviews }
+                        toggleReviewForm={ this.toggleReviewForm }
+                        user={this.state.currentUser}
                     />
                     : null
                     }
@@ -174,6 +176,7 @@ export default class ShowRestaurant extends Component {
                         product={ this.state.productToEdit }
                         restaurant={ this.props.match.params.id }
                         getProducts={ this.getProducts }
+                        toggleProductForm={ this.toggleProductForm }
                     />
                     : null
                     }
@@ -183,6 +186,7 @@ export default class ShowRestaurant extends Component {
                         restaurant={ this.state.restaurant }
                         isEdit={ this.state.isEdit }
                         getRestaurant={ this.getRestaurant }
+                        toggleRestaurantForm={ this.toggleRestaurantForm }
                     />
                     : null
                 }

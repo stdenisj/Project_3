@@ -18,10 +18,14 @@ import './App.css';
     });
   };
 
+  logOutUser = () => {
+    this.setState({ currentUser: {} })
+  };
+
   render() {
     const loginComponent = () => (<LoginForm setUser={this.setUser}/>)
     const RestaurantListComponent = () => (<RestaurantList user={this.state.currentUser} />)
-    const NavigationComponent = () => (<Navigation user={this.state.currentUser} />)
+    const NavigationComponent = () => (<Navigation user={this.state.currentUser} logOutUser={this.logOutUser}/>)
     return (
       <div className="App" id='Application'>
         <Router>
