@@ -23,6 +23,13 @@ export default class SearchPage extends Component {
         });
     };
 
+    findAllRestaurants = () => {
+        axios.get('/api/restaurants/').then( (response) => {
+            this.setState({foundRestaurants: response.data, redirect: true})
+            this.props.listOfFoundRestaurants(this.state.foundRestaurants)
+        });
+    }
+
 handleSearch = (event) => {
     event.preventDefault()
     if (this.state.searchInput === '') {
@@ -41,7 +48,7 @@ handleSearch = (event) => {
 
     render() {
         return (
-            <div>
+            <div >
             { this.state.redirect
                 ? <Redirect to='/restaurants' restaurants={this.state.foundRestaurants} />
                 : null
@@ -51,6 +58,7 @@ handleSearch = (event) => {
                         <SeachSelector inputChange={ this.inputChange } />
                     <input type='submit' value='search' />
                 </form>
+                <button onClick={ this.findAllRestaurants }> View All</button>
             </div>
         )
     }

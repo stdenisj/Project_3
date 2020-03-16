@@ -6,6 +6,10 @@ export default class Restaurant extends Component {
     render() {
         return (
             <div>
+
+
+
+                
                 <div>
                     <Link to={{
                         pathname: `/restaurants/${this.props.restaurant._id}`,
