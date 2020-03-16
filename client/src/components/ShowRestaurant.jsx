@@ -117,6 +117,7 @@ export default class ShowRestaurant extends Component {
                                     review={ review } 
                                     key={ i } 
                                     getReviews={ this.getReviews }
+                                    currentUser={ this.state.currentUser}
                                     />
                                 })    
                             }
@@ -129,7 +130,7 @@ export default class ShowRestaurant extends Component {
                            <Card.Title>{ this.state.restaurant.name}</Card.Title>
                            <Card.Text>
                            { this.state.restaurant.description}<br/>
-                           { this.state.restaurant.website }
+                           <a href={this.state.restaurant.website}>{ this.state.restaurant.website }</a>
                            </Card.Text>
                            
                        </Card.Body>
@@ -164,7 +165,7 @@ export default class ShowRestaurant extends Component {
                         restaurant={ this.props.match.params.id }
                         getReviews={ this.getReviews }
                         toggleReviewForm={ this.toggleReviewForm }
-                        user={this.state.currentUser}
+                        user={ this.state.currentUser }
                     />
                     : null
                     }
@@ -177,6 +178,7 @@ export default class ShowRestaurant extends Component {
                         restaurant={ this.props.match.params.id }
                         getProducts={ this.getProducts }
                         toggleProductForm={ this.toggleProductForm }
+                        currentUser={ this.state.currentUser }
                     />
                     : null
                     }

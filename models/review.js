@@ -10,7 +10,7 @@ const Review = new Schema({
     reviewerPic: String,
     date: {
         type: Date,
-        default: Date.now,
+        default: new Date,
     },
     rating: String,
     comment: String,

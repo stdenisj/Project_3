@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'react-bootstrap'
+import { Card, Image, Button} from 'react-bootstrap'
 import axios from 'axios'
 
 
@@ -15,17 +15,32 @@ export default class Review extends Component {
         const { date, comment, rating, reviewerPic, reviewerUserName} = this.props.review
 
         return (
-                <Col className='Review'>
-                    <Row>{ reviewerUserName }</Row>
-                    <Row>{ comment }</Row>
-                    <Row>
-                        <span>{ date }</span>
-                        <span>{ rating }</span>
-                    </Row>
-                    <Row>
-                        <button onClick={ this.deleteReview }>Delete</button>
-                    </Row>
-                </Col>
+                <Card style={{ width: '30rem' }}>
+                    <Card.Header>
+                            <Image 
+                                alt="Hello User"
+                                src={ reviewerPic }
+                                width="50"
+                                height="50"
+                            />
+                            <Card.Title >{ reviewerUserName }</Card.Title>
+                    </Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            { comment }<br/>
+                            Rating: { rating }
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="text-muted">
+                        <Card.Text>{ date }</Card.Text>   
+                              { this.props.currentUser !== undefined
+                               ?((this.props.currentUser.userName === reviewerUserName) || (this.props.currentUser.adminStatus))
+                                    ?<Button variant="danger" size="sm" onClick={ this.deleteReview }>Delete</Button>
+                                    : null
+                               : null
+                               }
+                    </Card.Footer>
+                </Card>
         )
     }
 }

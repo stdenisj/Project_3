@@ -1,34 +1,40 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 export default class Navigation extends Component {
     state = {
-        user: {},
-        loggedIn: false
+        redirect: false
     }
 
 
-    setUserStatus = () => this.props.user.userName === undefined
-        ? null
-        : this.setState({
-            user: this.props.user,
-            loggedIn: true,
-        });
+    // setUserStatus = () => this.props.user.userName === undefined
+    //     ? null
+    //     : this.setState({
+    //         user: this.props.user,
+    //         loggedIn: true,
+    //     });
 
-    componentWillMount() {
-        this.setUserStatus();
-    }
+    // componentWillMount() {
+    //     this.setUserStatus();
+    // }
 
     logOutUser = () => {
-        this.setState({ user: {} });
-        this.props.logOutUser();
+        this.setState({ redirect: true });
+        this.props.logOutUser()
     };
-    
+
+    perpareRedirect = () => {
+        this.setState({ redirect: false })
+    }
     render() {
         return (
             <Navbar>
+                {   this.state.redirect
+                    ? <Redirect to='/' />
+                    : null
+                }
                 <Link to='/' ><Navbar.Brand>Home</Navbar.Brand></Link>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
@@ -36,7 +42,7 @@ export default class Navigation extends Component {
                     ? <Navbar.Text>
                         <Link to='/'>      
                             <img alt="Hello User"
-                                 src={this.state.user.profileImg}
+                                 src={this.props.user.profileImg}
                                  width="30"
                                  height="30"
                             /></Link>
@@ -45,7 +51,7 @@ export default class Navigation extends Component {
                     : <Navbar.Text>
                         <Link to={{
                             pathname: '/login',
-                            user: this.props.user}}
+                            user: this.props.user}} onClick={this.perpareRedirect}
                         >Login</Link>
                     </Navbar.Text>
                     }

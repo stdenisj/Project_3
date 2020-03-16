@@ -8,12 +8,20 @@ userRouter.get('/:userName/:password', (req, res) => {
     User.find().then( (users) => {
         for (user of users) {
             if( user.userName == searchName && user.password == searchPassword) {
-                const sentUser = { ...user._doc }
-                sentUser.password = ''
+                if(user.adminStatus === true) {
+                    const sentUser = { ...user._doc }
+                    sentUser.password = ''
+                    res.json(sentUser)  
+                } else {
+                    const sentUser = {
+                    userName: user._doc.userName,
+                    password: '',
+                    name: user._doc.name,
+                    profileImg: user._doc.profileImg
+                }
                 res.json(sentUser)  
-            } else {
-            } 
-        }
+            }
+        }}
     }).catch( (e) => console.log(e))
 });
 
