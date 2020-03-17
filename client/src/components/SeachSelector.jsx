@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Form } from 'react-bootstrap'
 
 export default class SeachSelector extends Component {
 
@@ -8,14 +9,23 @@ export default class SeachSelector extends Component {
 
     render() {
         return (
-            <div>
-                <select name="selectedSearchInput" onChange={ this.selectedOption } defaultValue='name'>
+            <Form.Group>
+                <Form.Control as='select' name="selectedSearchInput" onChange={ this.selectedOption } defaultValue='name'>
                     <option value="name">Name</option>
                     <option value="city">City</option>
                     <option value="state">State(Abbreviation)</option>
                     <option value="zipcode">zipcode</option>
-                </select>
-            </div>
+                </Form.Control>
+            </Form.Group>
+
+            // <div>
+            //     <select name="selectedSearchInput" onChange={ this.selectedOption } defaultValue='name'>
+            //         <option value="name">Name</option>
+            //         <option value="city">City</option>
+            //         <option value="state">State(Abbreviation)</option>
+            //         <option value="zipcode">zipcode</option>
+            //     </select>
+            // </div>
         )
     }
 }

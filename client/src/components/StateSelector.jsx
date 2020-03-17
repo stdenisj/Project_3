@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Form } from 'react-bootstrap'
 
 export default class StateSelector extends Component {
 
@@ -8,8 +9,9 @@ export default class StateSelector extends Component {
 
     render() {
         return (
-            <div>
-                <select name="searchInput" onChange={ this.selectedOption } defaultValue='GA'>
+        <Form.Group>
+            <Form.Control as='Select' name="searchInput" onChange={ this.selectedOption } defaultValue='GA'>
+                {/* // <select name="searchInput" onChange={ this.selectedOption } defaultValue='GA'> */}
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -60,8 +62,9 @@ export default class StateSelector extends Component {
                     <option value="WV">West Virginia</option>
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
-                </select>
-            </div>
+                {/* </select> */}
+            </Form.Control>
+        </Form.Group>
         )
     }
 }

@@ -12,7 +12,7 @@ const Restaurant = new Schema({
         street: String,
         city: String,
         state: String,
-        zipCode: Number,
+        zipCode: String,
     },
     website: String,
     image: String,

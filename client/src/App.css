@@ -48,6 +48,8 @@
   max-height: 50vh;
 }
 
-Navbar {
-  background-color: black;
+
+#SearchPage {
+  padding: 10vw;
+
 }

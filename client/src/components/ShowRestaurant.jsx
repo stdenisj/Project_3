@@ -132,7 +132,7 @@ export default class ShowRestaurant extends Component {
                     </Row>
                 </Col>
             </Row>
-        { this.props.user !== undefined
+        { this.state.currentUser !== undefined
             ?   <button onClick={ this.toggleReviewForm }>
                     { this.state.addReview
                         ? 'Cancel'
@@ -142,8 +142,8 @@ export default class ShowRestaurant extends Component {
             :   null
         }
 
-        { this.props.user !== undefined
-            ? this.props.user.adminStatus === true
+        { this.state.currentUser !== undefined
+            ? this.state.currentUser.adminStatus
                 ? <div>
                     <button onClick={ this.toggleProductForm }>
                             { this.state.addProduct
@@ -180,8 +180,8 @@ export default class ShowRestaurant extends Component {
                 : null
             }
             </div>
-                :null
-            :null
+        :null
+    :null
         }
         { this.state.addReview
             ? <ReviewForm 
