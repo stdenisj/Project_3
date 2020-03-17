@@ -8,7 +8,6 @@ export default class LoginForm extends Component {
             userName: '',
             password: '',
             name: '',
-            profileImg: ''
         },
         currentUser: {},
         isRedirect: false,
@@ -74,6 +73,14 @@ export default class LoginForm extends Component {
                   <Form.Group>
                     <Form.Control type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
                   </Form.Group>
+                    {this.state.isAddUesr
+                    ? <Form.Group>
+                        <Form.Control type='text' name='name' onChange={ this.inputChange} placeholder='Enter Your Name'/>
+                    </Form.Group> 
+                    : null
+                    }
+
+
                   <Button variant="success" type='submit'>
                     { this.state.isAddUesr
                         ? 'Create User'
