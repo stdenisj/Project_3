@@ -30,8 +30,8 @@ export default class RestaurantList extends Component {
     render() {
         
         return (
-            
-            <Container className='RestaurantListCard'>
+            <div id='ReataurantListPage'>
+            <Container className='RestaurantListCard' >
 
                 <CardColumns>
 
@@ -44,11 +44,11 @@ export default class RestaurantList extends Component {
 
                 { this.state.addRestaurant
                     ? <RestaurantForm 
-                            addNewRestaurant={ this.addNewRestaurant } 
-                            inputChange={ this.inputChange }
-                            getRestaurants={ this.getRestaurants }
-                            toggleAddForm={ this.toggleAddForm }
-                        />
+                    addNewRestaurant={ this.addNewRestaurant } 
+                    inputChange={ this.inputChange }
+                    getRestaurants={ this.getRestaurants }
+                    toggleAddForm={ this.toggleAddForm }
+                    />
                     : null
                 }
                 { this.props.user !== undefined
@@ -60,9 +60,10 @@ export default class RestaurantList extends Component {
                                 }
                             </button>
                         :null
-                    :null
-                }
+                        :null
+                    }
             </Container>
+        </div>
         )
     };
 };

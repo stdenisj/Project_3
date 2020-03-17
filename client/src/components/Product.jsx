@@ -12,7 +12,10 @@ export default class Product extends Component {
             <Col className='ProductImage'>
                 <div >
                     <Image
-                        style={{ height: '180px', width: '180px'}}
+                        style={{    height: '180px', 
+                                    width: '180px',
+                                    borderRadius: '15px'
+                                }}
                         src={ img }
                         alt={ name }
                     />

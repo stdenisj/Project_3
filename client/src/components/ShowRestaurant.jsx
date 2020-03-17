@@ -97,7 +97,14 @@ export default class ShowRestaurant extends Component {
     render() {
 
         return (
-            <Container fluid>
+            <Container fluid style={{ 
+                                        backgroundImage: `url(${this.state.restaurant.image})`,
+                                        backgroundRepeat: 'repeat-y',
+                                        backgroundSize: 'cover',
+                                        height: '100vh',
+                                        width: '100vw',
+                                    
+                                    }}>
                 <Row className='ProductRow'>
                     {this.state.products.map( (product, i) => {
                         return <Product product={ product } 
@@ -140,13 +147,15 @@ export default class ShowRestaurant extends Component {
 
 
         { this.state.currentUser !== undefined
-            ?   <button onClick={ this.toggleReviewForm }>
+            ? this.state.currentUser.userName !== undefined
+                ?   <button onClick={ this.toggleReviewForm }>
                     { this.state.addReview
                         ? 'Cancel'
                         : 'Add Review'
                     }
-                </button>
-            :   null
+                    </button>
+                :   null
+            : null
         }
 
         { this.state.currentUser !== undefined

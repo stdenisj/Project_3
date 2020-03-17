@@ -18,7 +18,7 @@ export default class Navigation extends Component {
     }
     render() {
         return (
-            <Navbar bg='success'>
+            <Navbar bg='light' id='Navigation'>
                 {   this.state.redirect
                     ? <Redirect to='/' />
                     : null
@@ -27,20 +27,21 @@ export default class Navigation extends Component {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     { this.props.user.userName !== undefined 
-                    ? <Navbar.Text>
-                        <Link to='/'>      
+                    ? <Navbar.Text >
+                            <Navbar.Text style={{ margin: '0px 5vw'}}>Hello { this.props.user.name }   
                             <img alt="Hello User"
                                  src={this.props.user.profileImg}
                                  width="30"
                                  height="30"
-                            /></Link>
-                        <Button onClick={this.logOutUser}>Log Out</Button>
+                                 />
+                            </Navbar.Text>    
+                        <Button variant="success" onClick={this.logOutUser}>Log Out</Button>
                     </Navbar.Text>
                     : <Navbar.Text>
                         <Link to={{
                             pathname: '/login',
                             user: this.props.user}} onClick={this.perpareRedirect}
-                        >Login</Link>
+                        ><Button variant="success" >Login</Button></Link>
                     </Navbar.Text>
                     }
                 </Navbar.Collapse>

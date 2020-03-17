@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
-
+import { Form, Button } from 'react-bootstrap'
 export default class LoginForm extends Component {
     state = {
         userForm: {
@@ -60,12 +60,31 @@ export default class LoginForm extends Component {
     
     render() {
         return (
-            <div>
+            <div id="LoginPage">
             { this.state.isRedirect
                 ? <Redirect to='/' user={this.state.currentUser} />
                 : null
                 }
-                <form onSubmit={ this.isAddUesr
+                <Form className='LoginForm' onSubmit={ this.isAddUesr
+                                ? this.addNewUser 
+                                : this.loginUser }>
+                  <Form.Group>
+                    <Form.Control type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name'/>
+                  </Form.Group>            
+                  <Form.Group>
+                    <Form.Control type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
+                  </Form.Group>
+                  <Button variant="success" type='submit'>
+                    { this.state.isAddUesr
+                        ? 'Create User'
+                        : 'Log In' 
+                    }
+                  </Button>
+                </Form>
+
+
+
+                {/* <form onSubmit={ this.isAddUesr
                                 ? this.addNewUser 
                                 : this.loginUser }>
                     <div>
@@ -94,14 +113,14 @@ export default class LoginForm extends Component {
                                                     : 'Log In' 
                                                 }
                         />
-                </form>
+                </form> */}
 
-                <button onClick={ this.toggleNewUserForm }>
+                <Button  variant="success" onClick={ this.toggleNewUserForm }>
                     {this.state.isAddUesr
                     ?'Cancel'
                     :'Create Account'
                     }
-                </button>
+                </Button>
             </div>
         )
     }

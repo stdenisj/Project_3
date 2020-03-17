@@ -53,30 +53,33 @@ handleSearch = (event) => {
                 ? <Redirect to='/restaurants' restaurants= { this.state.foundRestaurants } />
                 : null
             }
-                <Form onSubmit={ this.handleSearch } className="text-center">
-                    <Form.Row>
-                        <Col>
+                <div className="SearchBox">
+                    <h1 className='SearchHeading'> Find Exciting New Plant-Based Restaurants</h1>
+                    <Form onSubmit={ this.handleSearch } >
+                        <Form.Row>
+                            <Col>
 
-                        { this.state.searchForm.selectedSearchInput === 'state'
-                        ?   <StateSelector inputChange={ this.inputChange } />
-                        :   <Form.Group style={{textAlign: "center"}}>
-                                <Form.Control type="text" name='searchInput' onChange={ this.inputChange}placeholder="Search:" />
-                            </Form.Group>
-                        } 
+                            { this.state.searchForm.selectedSearchInput === 'state'
+                            ?   <StateSelector inputChange={ this.inputChange } />
+                            :   <Form.Group style={{textAlign: "center"}}>
+                                    <Form.Control type="text" name='searchInput' onChange={ this.inputChange}placeholder="Search:" />
+                                </Form.Group>
+                            } 
 
-                        </Col>
-                        <Col>
-                            <SeachSelector inputChange={ this.inputChange } />
-                        </Col>
+                            </Col>
+                            <Col>
+                                <SeachSelector inputChange={ this.inputChange } />
+                            </Col>
 
-                    </Form.Row>
-                    <Form.Group>
-                        <Button type='submit'> Search </Button>
-                    </Form.Group>
-                        
-                        {/* // <input type='submit' value='search' /> */}
-                </Form>
-                <Button onClick={ this.findAllRestaurants }> View All Restaurants</Button>
+                        </Form.Row>
+                        <Form.Group>
+                            <Button variant="success" type='submit'> Search </Button>
+                        </Form.Group>
+                            
+                            {/* // <input type='submit' value='search' /> */}
+                    </Form>
+                    <Button variant="success" onClick={ this.findAllRestaurants }> View All Restaurants</Button>
+                </div>
             </div>
 
 
