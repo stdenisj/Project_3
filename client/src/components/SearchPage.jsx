@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SeachSelector from './SeachSelector'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import StateSelector from './StateSelector'
 
 
 export default class SearchPage extends Component {
@@ -48,13 +49,16 @@ handleSearch = (event) => {
 
     render() {
         return (
-            <div >
+            <div>
             { this.state.redirect
                 ? <Redirect to='/restaurants' restaurants={this.state.foundRestaurants} />
                 : null
             }
                 <form onSubmit={ this.handleSearch }>
-                    <input type='text' name='searchInput' onChange={ this.inputChange} placeholder='' />
+                    { this.state.searchForm.selectedSearchInput === 'state'
+                     ?<StateSelector inputChange={ this.inputChange } />
+                     :<input type='text' name='searchInput' onChange={ this.inputChange} placeholder='' />
+                    }
                         <SeachSelector inputChange={ this.inputChange } />
                     <input type='submit' value='search' />
                 </form>

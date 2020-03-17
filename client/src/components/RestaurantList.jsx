@@ -45,12 +45,17 @@ export default class RestaurantList extends Component {
                         />
                     : null
                 }
-                <button onClick={ this.toggleAddForm }> 
-                    {   this.state.addRestaurant
-                        ? 'Cancel'         
-                        : 'Add Restaurant'
-                    }
-                </button>
+                { this.props.user !== undefined
+                    ? this.props.user.adminStatus === true
+                        ?    <button onClick={ this.toggleAddForm }> 
+                                {   this.state.addRestaurant
+                                    ? 'Cancel'         
+                                    : 'Add Restaurant'
+                                }
+                            </button>
+                        :null
+                    :null
+                }
             </div>
         )
     };

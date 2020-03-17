@@ -18,7 +18,7 @@ export default class Navigation extends Component {
     }
     render() {
         return (
-            <Navbar>
+            <Navbar bg='success'>
                 {   this.state.redirect
                     ? <Redirect to='/' />
                     : null

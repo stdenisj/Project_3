@@ -41,7 +41,7 @@ export default class ProductForm extends Component {
     submitEditedProduct = (event) => {
         event.preventDefault();
         axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( () => {
-            this.props.toggleProductsForm();
+            this.props.toggleProductForm();
             this.props.getProducts() 
         });
     };
