@@ -50,7 +50,7 @@ handleSearch = (event) => {
         return (
             <div id="SearchPage">
             { this.state.redirect
-                ? <Redirect to='/restaurants' restaurants={this.state.foundRestaurants} />
+                ? <Redirect to='/restaurants' restaurants= { this.state.foundRestaurants } />
                 : null
             }
                 <Form onSubmit={ this.handleSearch } className="text-center">

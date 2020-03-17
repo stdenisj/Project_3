@@ -6,7 +6,7 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import Product from './Product'
 import ProductForm from './ProductForm'
-import { Container, Row, Col, Card,  Image } from 'react-bootstrap';
+import { Container, Row, Col, Card, CardColumns } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -95,9 +95,10 @@ export default class ShowRestaurant extends Component {
 
 
     render() {
+
         return (
             <Container fluid>
-                <Row style={{ height: '15vw'}}>
+                <Row className='ProductRow'>
                     {this.state.products.map( (product, i) => {
                         return <Product product={ product } 
                                         key={ i } 
@@ -107,7 +108,7 @@ export default class ShowRestaurant extends Component {
                     }       
                 </Row>
                 <Row>
-                    <Col lg={3}>
+                    <Col>
                         <Card>
                            <Card.Body>
                                <Card.Title>{ this.state.restaurant.name}</Card.Title>
@@ -119,19 +120,25 @@ export default class ShowRestaurant extends Component {
                        </Card>
                     </Col> 
                     <Col>
-                    <Row>
+                        <Row className='ReviewRow'>
+                            <CardColumns className='ReviewColumns'>
                             { this.state.reviews.map( (review, i) => {
                                 return <Review 
-                                    review={ review } 
-                                    key={ i } 
-                                    getReviews={ this.getReviews }
-                                    currentUser={ this.state.currentUser}
-                                    />
+                                review={ review } 
+                                key={ i } 
+                                getReviews={ this.getReviews }
+                                currentUser={ this.state.currentUser}
+                                />
                                 })    
                             }
-                    </Row>
-                </Col>
-            </Row>
+                            </CardColumns>
+                        </Row>
+                    </Col>
+                </Row>
+
+
+
+
         { this.state.currentUser !== undefined
             ?   <button onClick={ this.toggleReviewForm }>
                     { this.state.addReview

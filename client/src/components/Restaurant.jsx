@@ -1,37 +1,35 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Image } from 'react-bootstrap'
+import { Image, Card, Button } from 'react-bootstrap'
 
 export default class Restaurant extends Component {
     render() {
+        const { name, location:{ street, city, state, zipCode },  image } = this.props.restaurant
         return (
             <div>
-
-
-
-                
-                <div>
-                    <Link to={{
+                <Card style={{ width: '15rem' }}className='RestaurantCard'>
+                <Link to={{
                         pathname: `/restaurants/${this.props.restaurant._id}`,
                         restaurant: this.props.restaurant,
                         user: this.props.user 
                     }}>
-                        <Image 
-                            className='MainPageImage'
-                            src={ this.props.restaurant.image} 
-                            alt={ this.props.restaurant.name} 
-                            fluid
-                        />
-                    </Link>
-                </div>
-                <div>
-                    <Link to={{
+                    <Card.Img 
+                            src={ image } 
+                            alt={ name } />
+                </Link>
+                <Card.Body>
+                <Link to={{
                         pathname: `/restaurants/${this.props.restaurant._id}`,
                         restaurant: this.props.restaurant,
                         user: this.props.user }}>
-                        <h2>{ this.props.restaurant.name}</h2>
-                    </Link>
-                </div>
+                    <Card.Title>{ name }</Card.Title>        
+                </Link>
+                <Card.Text>
+                    { street }<br/>
+                    { city }  { state }  { zipCode }
+                </Card.Text>
+                </Card.Body>
+                </Card>
             </div>
         )
     }

@@ -22,7 +22,7 @@ userRouter.get('/:userName/:password', (req, res) => {
                 res.json(sentUser)  
             }
         }}
-    }).catch( (e) => console.log(e))
+    }).catch( (e) => res.send(alert('Invalid login')))
 });
 
 userRouter.post('/', (req, res) => {   

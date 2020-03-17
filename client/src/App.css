@@ -34,13 +34,21 @@
 
 
 #ProductCard {
-  margin: 0px 30px;
+  margin: 0px 20px;
 }
 
 .ProductImage {
-  height: 8vw;
-  width: 15vw;
-  margin: 5px 10px
+  width: 15rem;
+  margin: 10px;
+}
+
+.ProductRow {
+    height: 15rem;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    overflow: auto;
 }
 
 .MainPageImage {
@@ -48,8 +56,31 @@
   max-height: 50vh;
 }
 
+.ReviewCard {
+   min-width: 16rem;
+   width: 100%;
+}
+
+.ReviewColumns {
+  padding: 10px;
+  max-width: max-content;
+}
 
 #SearchPage {
   padding: 10vw;
 
+}
+
+
+.RestaurantCard {
+  margin: 20px 0px
+}
+
+.RestaurantListCard {
+  max-width: max-content;
+
+}
+
+.ReviewRow {
+  place-content: space-evenly;
 }

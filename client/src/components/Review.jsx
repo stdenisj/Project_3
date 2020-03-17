@@ -15,7 +15,7 @@ export default class Review extends Component {
         const { date, comment, rating, reviewerPic, reviewerUserName} = this.props.review
 
         return (
-                <Card style={{ width: '30rem' }}>
+                <Card className='ReviewCard'>
                     <Card.Header>
                             <Image 
                                 alt="Hello User"

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Restaurant from './Restaurant'
 import RestaurantForm from './RestaurantForm'
+import { Container, CardColumns } from 'react-bootstrap'
 
 export default class RestaurantList extends Component {
     state = {
@@ -30,11 +31,16 @@ export default class RestaurantList extends Component {
         
         return (
             
-            <div>
+            <Container className='RestaurantListCard'>
+
+                <CardColumns>
+
                 { this.props.restaurants.map( (restaurant, i) => {
                     return <Restaurant restaurant={restaurant} key={i} user={ this.props.user } />
                 })
-                }
+            }
+            
+                </CardColumns>
 
                 { this.state.addRestaurant
                     ? <RestaurantForm 
@@ -56,7 +62,7 @@ export default class RestaurantList extends Component {
                         :null
                     :null
                 }
-            </div>
+            </Container>
         )
     };
 };
