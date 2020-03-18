@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { Form, Button } from 'react-bootstrap'
 
 export default class RestaurantForm extends Component {
     state = {
@@ -77,93 +78,86 @@ export default class RestaurantForm extends Component {
             this.state.isRedirect
             ? <Redirect to='/' />
             : <div>
-                 <form onSubmit={ this.props.isEdit? this.submitEditForm : this.submitNewRestaurant }>
-                    <div>
-                        <label>Name of Restaurant:   </label>
-                        <input 
-                            type='text' 
-                            name='name' 
-                            onChange={ this.inputChange } 
-                            value={ name }
-                        />
+                <Form onSubmit={ this.props.isEdit? this.submitEditForm : this.submitNewRestaurant }>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='text' 
+                                    name='name'
+                                    placeholder='Enter Restaurant Name'
+                                    onChange={ this.inputChange } 
+                                    value={ name }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='text'
+                                    name='street'
+                                    placeholder='Enter Street Address' 
+                                    onChange={ this.inputChange } 
+                                    value={ street }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='text' 
+                                    name='city'
+                                    placeholder='Enter City' 
+                                    onChange={ this.inputChange }
+                                    value={ city }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                                    type='text' 
+                                    name='state'
+                                    placeholder='Enter State' 
+                                    onChange={ this.inputChange }
+                                    value={ state }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                                    type='text'
+                                    name='zipCode' 
+                                    placeholder='Enter Zip-Code'
+                                    onChange={ this.inputChange }
+                                    value={ zipCode }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control
+                                    type='text' 
+                                    name='image'
+                                    placeholder='Enter Restaurant Picture Link'
+                                    onChange={ this.inputChange }
+                                    value={ image }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control                             
+                                    type='text' 
+                                    name='website'
+                                    placeholder='Enter Website Link'
+                                    onChange={ this.inputChange } 
+                                    value={ website }/>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    as='textarea'                             
+                                    name="description"
+                                    placeholder='Enter Description'
+                                    rows="10" 
+                                    cols="30"  
+                                    onChange={ this.inputChange }
+                                    value={ description }/>
+                    </Form.Group>
+                    <Button variant="success" type='submit'>
+                        { this.props.isEdit
+                            ? 'Save Changes'  
+                            : 'Add Restaurant'
+                        } 
+                    </Button>
+                </Form>
+                { this.props.isEdit
+                    ?<div>
+                        <Button variant="danger" onClick={ this.deleteRestaurant }>Delete</Button>
                     </div>
-                    <div>
-                        <label>Street Name and Number:   </label>
-                        <input 
-                            type='text' 
-                            name='street' 
-                            onChange={ this.inputChange } 
-                            value={ street }
-                        />
-                    </div>
-                    <div>
-                    <label>City:   </label>
-                        <input 
-                            type='text' 
-                            name='city' 
-                            onChange={ this.inputChange }
-                            value={ city }
-                        />
-                    </div>
-                    <div>
-                    <label>State:   </label>
-                        <input 
-                            type='text' 
-                            name='state' 
-                            onChange={ this.inputChange }
-                            value={ state }
-                        />
-                    </div>
-                    <div>
-                    <label>zipCode:   </label>
-                        <input 
-                            type='text' 
-                            name='zipCode' 
-                            onChange={ this.inputChange }
-                            value={ zipCode }
-                        />
-                    </div>
-                    <div>
-                    <label>Image of Restaurant:   </label>
-                        <input 
-                            type='text' 
-                            name='image' 
-                            onChange={ this.inputChange }
-                            value={ image }
-                        />
-                    </div>
-                    <div>
-                        <label>Website:   </label>
-                        <input 
-                            type='text' 
-                            name='website' 
-                            onChange={ this.inputChange } 
-                            value={ website }
-                        />
-                    </div>
-                    <div>
-                    <label>Description:   </label>
-                        <textarea 
-                            name="description" 
-                            rows="10" 
-                            cols="30"  
-                            onChange={ this.inputChange }
-                            value={ description }
-                        />
-                    </div>
-                    <div>
-                        <input 
-                            type='submit' 
-                            value={ this.props.isEdit
-                                ? 'Edit Restaurant'  
-                                : 'Add Restaurant'
-                            } 
-                        />
-                    </div>
-                </form>
-                    <div>
-                        <button onClick={ this.deleteRestaurant }>Delete</button>
-                    </div>
+                    : null
+                }
             </div>
         )
     }

@@ -68,12 +68,12 @@ export default class LoginForm extends Component {
                 }
                 
                 <Form className='LoginForm' onSubmit={ this.state.isAddUesr ? this.addNewUser : this.loginUser }>
-                  <Form.Group>
-                    <Form.Control type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name'/>
-                  </Form.Group>            
-                  <Form.Group>
-                    <Form.Control type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
-                  </Form.Group>
+                    <Form.Group>
+                        <Form.Control type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name'/>
+                    </Form.Group>            
+                    <Form.Group>
+                        <Form.Control type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
+                    </Form.Group>
                     {this.state.isAddUesr
                     ? <Form.Group>
                         <Form.Control type='text' name='name' onChange={ this.inputChange} placeholder='Enter Your Name'/>
@@ -82,47 +82,13 @@ export default class LoginForm extends Component {
                     }
 
 
-                  <Button variant="success" type='submit'>
-                    { this.state.isAddUesr
-                        ? 'Create User'
-                        : 'Log In' 
-                    }
-                  </Button>
+                    <Button variant="success" type='submit'>
+                        { this.state.isAddUesr
+                            ? 'Create User'
+                            : 'Log In' 
+                        }
+                    </Button>
                 </Form>
-
-
-
-                {/* <form onSubmit={ this.isAddUesr
-                                ? this.addNewUser 
-                                : this.loginUser }>
-                    <div>
-                        <label>UserName:   </label>
-                        <input type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name' />
-                    </div>
-                    <div>                        
-                        <label>Password:   </label>
-                        <input type='password' name='password' onChange={ this.inputChange} placeholder='Enter Password' />
-                    </div>
-                    {this.state.isAddUesr
-                    ? <div>
-                        <div>
-                            <label>Name:   </label>
-                            <input type='text' name='name' onChange={ this.inputChange} placeholder='Enter Your Name' />
-                        </div>
-                        <div>                        
-                            <label>Profile Image link:   </label>
-                            <input type='text' name='profileImg' onChange={ this.inputChange} placeholder='Enter Link to profile picture' />
-                        </div>
-                    </div>
-                    : null
-                    }
-                        <input type='submit' value={ this.state.isAddUesr
-                                                    ? 'Create User'
-                                                    : 'Log In' 
-                                                }
-                        />
-                </form> */}
-
                 <Button  variant="success" onClick={ this.toggleNewUserForm }>
                     {this.state.isAddUesr
                     ?'Cancel'

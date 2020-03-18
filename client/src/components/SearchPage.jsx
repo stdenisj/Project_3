@@ -76,36 +76,10 @@ handleSearch = (event) => {
                         <Form.Group>
                             <Button variant="success" type='submit'> Search </Button>
                         </Form.Group>
-                            
-                            {/* // <input type='submit' value='search' /> */}
                     </Form>
                     <Button variant="success" onClick={ this.findAllRestaurants }> View All Restaurants</Button>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-            // <div id="SearchPage">
-            // { this.state.redirect
-            //     ? <Redirect to='/restaurants' restaurants={this.state.foundRestaurants} />
-            //     : null
-            // }
-            //     <form onSubmit={ this.handleSearch } >
-            //         { this.state.searchForm.selectedSearchInput === 'state'
-            //          ?<StateSelector inputChange={ this.inputChange } />
-            //          :<input type='text' name='searchInput' onChange={ this.inputChange} placeholder='' />
-            //         }
-            //             <SeachSelector inputChange={ this.inputChange } />
-            //         <input type='submit' value='search' />
-            //     </form>
-            //     <button onClick={ this.findAllRestaurants }> View All</button>
-            // </div>
         )
     }
 }
