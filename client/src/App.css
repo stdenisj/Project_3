@@ -72,6 +72,7 @@
   background-image: url('https://i1.wp.com/foodrevolution.org/wp-content/uploads/blog-featured-veganism1-20180117-1430.jpg?ssl=1');
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-y: auto;
   height: 100vh;
   width: 100vw;
 }
@@ -110,7 +111,7 @@
 
 #ReataurantListPage {
   background-image: url('https://pinedovefarm.com/media/2017/04/bigstock-166401173.jpg');
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
   width: 100vw;
@@ -123,8 +124,9 @@
 
 #LoginPage {
   background-image: url('https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/04/09/16/istock-860026356.jpg');
-  background-repeat: repeat-y;
+  overflow-y: auto;
   background-size: cover;
+  background-repeat: no-repeat;
   height: 100vh;
   width: 100vw;
 }
@@ -132,3 +134,4 @@
 .LoginForm {
   padding: 15vw;
 }
+

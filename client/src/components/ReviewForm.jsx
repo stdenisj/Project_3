@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import RatingSelector from './RatingSelector'
 import axios from 'axios'
+import { Form, Button } from 'react-bootstrap'
 
 export default class ReviewForm extends Component {
     state = {
@@ -33,20 +34,16 @@ export default class ReviewForm extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={ this.addNewReview }>
-                    <div>
-                        <div>Description:   </div>
-                        <textarea name="comment" rows="5" cols="30"  onChange={ this.inputChange }>
-                        </textarea>
-                    </div>
-                    <RatingSelector inputChange={ this.inputChange }/>
-                    <div>
-                        <input type="submit" value="Add review" />
-                    </div>
-                </form>
+                <Form onSubmit={ this.addNewReview }>
 
-            </div>
+                <Form.Group>
+                    <Form.Control as='textarea' name="comment" rows="5" cols="30"  onChange={ this.inputChange } placeholder="Review"/>
+                </Form.Group>
+                    <RatingSelector inputChange={ this.inputChange }/>
+                <Button variant="success" type="submit">
+                    Submit Review
+                </Button>
+            </Form>
         )
     }
 }

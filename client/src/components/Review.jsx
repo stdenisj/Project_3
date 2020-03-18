@@ -15,7 +15,10 @@ export default class Review extends Component {
         const { date, comment, rating, reviewerPic, reviewerUserName} = this.props.review
 
         return (
-                <Card className='ReviewCard'>
+                <Card className='ReviewCard' style={{ 
+                                                        background: 'linear-gradient(-97deg, transparent, black)',
+                                                        color: 'white'
+                }}>
                     <Card.Header>
                             <Image 
                                 alt="Hello User"
@@ -25,7 +28,7 @@ export default class Review extends Component {
                             />
                             <Card.Title >{ reviewerUserName }</Card.Title>
                     </Card.Header>
-                    <Card.Body>
+                    <Card.Body style={{   background: 'radial-gradient(ellipse at top, grey, transparent)'}}>
                         <Card.Text>
                             { comment }<br/>
                             Rating: { rating }

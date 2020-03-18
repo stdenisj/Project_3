@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Image, Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 
 export default class Restaurant extends Component {
     render() {

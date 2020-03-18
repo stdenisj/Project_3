@@ -6,7 +6,7 @@ import Review from './Review'
 import ReviewForm from './ReviewForm'
 import Product from './Product'
 import ProductForm from './ProductForm'
-import { Container, Row, Col, Card, CardColumns } from 'react-bootstrap';
+import { Container, Row, Col, Card, CardColumns, Button } from 'react-bootstrap';
 
 
 export default class ShowRestaurant extends Component {
@@ -97,13 +97,13 @@ export default class ShowRestaurant extends Component {
     render() {
 
         return (
-            <Container fluid style={{ 
+            <Container id='SingleRestaurant' fluid style={{ 
                                         backgroundImage: `url(${this.state.restaurant.image})`,
                                         backgroundRepeat: 'repeat-y',
                                         backgroundSize: 'cover',
                                         height: '100vh',
                                         width: '100vw',
-                                    
+                                        overflowY: 'auto',
                                     }}>
                 <Row className='ProductRow'>
                     {this.state.products.map( (product, i) => {
@@ -148,12 +148,12 @@ export default class ShowRestaurant extends Component {
 
         { this.state.currentUser !== undefined
             ? this.state.currentUser.userName !== undefined
-                ?   <button onClick={ this.toggleReviewForm }>
+                ?   <Button onClick={ this.toggleReviewForm }>
                     { this.state.addReview
                         ? 'Cancel'
                         : 'Add Review'
                     }
-                    </button>
+                    </Button>
                 :   null
             : null
         }
@@ -161,18 +161,18 @@ export default class ShowRestaurant extends Component {
         { this.state.currentUser !== undefined
             ? this.state.currentUser.adminStatus
                 ? <div>
-                    <button onClick={ this.toggleProductForm }>
+                    <Button variant="warning" onClick={ this.toggleProductForm }>
                             { this.state.addProduct
                                 ? 'Cancel'
                                 : 'Add Product'
                             }
-                    </button>
-                    <button onClick={ this.toggleRestaurantForm }>
+                    </Button>
+                    <Button variant="warning" onClick={ this.toggleRestaurantForm }>
                             { this.state.restaurantForm
                                 ? 'Cancel'
                                 : 'Edit'
                             }
-                    </button>
+                    </Button>
 
 
             { this.state.addProduct

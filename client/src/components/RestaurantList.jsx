@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Restaurant from './Restaurant'
 import RestaurantForm from './RestaurantForm'
-import { Container, CardColumns } from 'react-bootstrap'
+import { Container, CardColumns, Button } from 'react-bootstrap'
+
 
 export default class RestaurantList extends Component {
     state = {
@@ -53,12 +54,12 @@ export default class RestaurantList extends Component {
                 }
                 { this.props.user !== undefined
                     ? this.props.user.adminStatus === true
-                        ?    <button onClick={ this.toggleAddForm }> 
+                        ?    <Button variant="success" onClick={ this.toggleAddForm }> 
                                 {   this.state.addRestaurant
                                     ? 'Cancel'         
                                     : 'Add Restaurant'
                                 }
-                            </button>
+                            </Button>
                         :null
                         :null
                     }
