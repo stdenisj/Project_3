@@ -33,8 +33,8 @@ export default class ProductForm extends Component {
     addNewProduct = (event) => {
         event.preventDefault();
         axios.post('/api/products', this.state.productForm).then( () => {
-            this.props.toggleProductsForm();
-            this.props.getProducts() 
+            this.props.toggleProductForm();
+            this.props.getProducts();
         });
     };
 
@@ -42,7 +42,7 @@ export default class ProductForm extends Component {
         event.preventDefault();
         axios.put(`/api/products/${this.props.product._id}`, this.state.productForm).then( () => {
             this.props.toggleProductForm();
-            this.props.getProducts() 
+            this.props.getProducts();
         });
     };
 

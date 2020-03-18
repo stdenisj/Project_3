@@ -54,7 +54,8 @@ handleSearch = (event) => {
                 : null
             }
                 <div className="SearchBox">
-                    <h1 className='SearchHeading'> Find Exciting New Plant-Based Restaurants</h1>
+                    <h1 className='SearchHeading'>Find Exciting New</h1><br/>
+                    <h1 className='SearchHeading'>Plant-Based Restaurants</h1>
                     <Form onSubmit={ this.handleSearch } >
                         <Form.Row>
                             <Col>

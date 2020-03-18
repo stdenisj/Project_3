@@ -30,7 +30,7 @@ export default class RestaurantForm extends Component {
     inputChange = (event) => {
         const changedInput = event.target.name;
         const updatedForm = { ...this.state.form };
-        if (changedInput === 'street' || changedInput === 'state' || changedInput === 'zipCode' ) { 
+        if (changedInput === 'street' || changedInput === 'state' || changedInput === 'zipCode' || changedInput === 'city' ) { 
             updatedForm.location[changedInput] = event.target.value
         } else {
             updatedForm[changedInput] = event.target.value;
