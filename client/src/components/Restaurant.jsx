@@ -21,7 +21,8 @@ export default class Restaurant extends Component {
                 <Link to={{
                         pathname: `/restaurants/${this.props.restaurant._id}`,
                         restaurant: this.props.restaurant,
-                        user: this.props.user }}>
+                        user: this.props.user }}
+                        style={{ color: 'green'}}>
                     <Card.Title>{ name }</Card.Title>        
                 </Link>
                 <Card.Text>
