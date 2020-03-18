@@ -34,7 +34,7 @@ export default class Review extends Component {
                             Rating: { rating }
                         </Card.Text>
                     </Card.Body>
-                    <Card.Footer className="text-muted">
+                    <Card.Footer style={{ color: 'white'}}>
                         <Card.Text>{ date }</Card.Text>   
                               { this.props.currentUser !== undefined
                                ?((this.props.currentUser.userName === reviewerUserName) || (this.props.currentUser.adminStatus))
