@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Button, Form } from 'react-bootstrap'
 
 export default class ProductForm extends Component {
     state = {
@@ -59,50 +60,53 @@ export default class ProductForm extends Component {
         const { name, description, img, price } = this.state.productForm
         return (
             <div>
-                <form onSubmit={ this.props.isEdit ? this.submitEditedProduct : this.addNewProduct } >
-                    <div>
-                        <div>
-                            <label>Name:   </label>
-                            <input 
-                                type='text' 
-                                name='name' 
-                                onChange={ this.inputChange }
-                                value={ name }
-                            />
-                        </div>
-                        <div>
-                            <label>Description:   </label>
-                            <textarea 
-                                name="description" 
-                                rows="5" 
-                                cols="25"  
-                                onChange={ this.inputChange }
-                                value={ description } 
-                            />
-                        </div>
-                        <div>
-                            <label>Image:   </label>
-                            <input 
-                                type='text' 
-                                name='img' 
-                                onChange={ this.inputChange }
-                                value={ img }
-                            />
-                        </div>
-                        <div>
-                            <label>Price:   </label>
-                            <input 
-                                type='number' 
-                                name='price' 
-                                onChange={ this.inputChange }
-                                value={ price }
-                            />
-                        </div>
-                        <input type="submit" value="Add Product" />
-                    </div>
-                </form>
+                <Form onSubmit={ this.props.isEdit ? this.submitEditedProduct : this.addNewProduct }>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='text' 
+                                    name='name'
+                                    placeholder='Enter Product Name'
+                                    onChange={ this.inputChange }
+                                    value={ name } />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    as='textarea'                             
+                                    name="description"
+                                    placeholder='Enter Product Description' 
+                                    rows="5" 
+                                    cols="25"  
+                                    onChange={ this.inputChange }
+                                    value={ description } />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='text' 
+                                    name='img'
+                                    placeholder='Enter Product Image URL' 
+                                    onChange={ this.inputChange }
+                                    value={ img } />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Control 
+                                    type='number' 
+                                    name='price'
+                                    placeholder='Enter Price' 
+                                    onChange={ this.inputChange }
+                                    value={ price } />
+                    </Form.Group>
+
+
+                    <Button variant="success" type='submit'>
+                        { this.props.isEdit
+                            ? 'Save Changes'  
+                            : 'Add Product'
+                        } 
+                    </Button>
+                </Form>
+
                 { this.props.isEdit
-                    ? <button onClick={ this.deleteProduct }>Delete</button>
+                    ? <Button variant="danger" onClick={ this.deleteProduct }>Delete</Button>
                     : null
                 }
             </div>
