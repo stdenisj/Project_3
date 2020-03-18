@@ -23,7 +23,12 @@ export default class Navigation extends Component {
                     ? <Redirect to='/' />
                     : null
                 }
-                <Link to='/' ><Navbar.Brand>Home</Navbar.Brand></Link>
+                <Link to='/' >
+                    <Navbar.Brand>
+                        <h4>Velp</h4>
+                        <p style={{ color: 'green', fontSize: '12px'}}>Plant-Based Restaurant Reviews</p>
+                    </Navbar.Brand>
+                </Link>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
                     { this.props.user.userName !== undefined 
