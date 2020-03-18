@@ -13,7 +13,7 @@ export default class SeachSelector extends Component {
                 <Form.Control as='select' name="selectedSearchInput" onChange={ this.selectedOption } defaultValue='name'>
                     <option value="name">Name</option>
                     <option value="city">City</option>
-                    <option value="state">State(Abbreviation)</option>
+                    <option value="state">State</option>
                     <option value="zipcode">zipcode</option>
                 </Form.Control>
             </Form.Group>

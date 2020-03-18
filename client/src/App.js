@@ -5,6 +5,7 @@ import ShowRestaurant from './components/ShowRestaurant'
 import Navigation from './components/Navigation'
 import LoginForm from './components/LoginForm'
 import SearchPage from './components/SearchPage'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -13,6 +14,12 @@ import './App.css';
     currentUser: {},
     foundRestaurants: [],
   };
+
+  findAllRestaurants = () => {
+    axios.get('/api/restaurants/').then( (response) => {
+        this.setState({foundRestaurants: response.data})
+    });
+  }
 
   setUser = (user) => {
     this.setState({
@@ -27,6 +34,11 @@ import './App.css';
   listOfFoundRestaurants = (restaurants) => {
     this.setState({ foundRestaurants: restaurants});
   };
+
+  componentDidMount() {
+    this.findAllRestaurants();
+  };
+
 
   render() {
     const loginComponent = () => (<LoginForm setUser={this.setUser}/>)
