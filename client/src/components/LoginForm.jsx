@@ -26,6 +26,7 @@ export default class LoginForm extends Component {
     
     addNewUser = (event) => {
         event.preventDefault();
+        console.log('addNewUser')
         axios.post(`/api/users/`, this.state.userForm).then( () => {
             const createdUser = { ...this.state.userForm };
             createdUser.password = '';
@@ -38,6 +39,7 @@ export default class LoginForm extends Component {
 
     loginUser = (event) => {
         event.preventDefault();
+        console.log('loginUser')
         const { userName, password } = this.state.userForm
         axios.get(`/api/users/${userName}/${password}`).then( 
             (response) => {
@@ -64,9 +66,8 @@ export default class LoginForm extends Component {
                 ? <Redirect to='/' user={this.state.currentUser} />
                 : null
                 }
-                <Form className='LoginForm' onSubmit={ this.isAddUesr
-                                ? this.addNewUser 
-                                : this.loginUser }>
+                
+                <Form className='LoginForm' onSubmit={ this.state.isAddUesr ? this.addNewUser : this.loginUser }>
                   <Form.Group>
                     <Form.Control type='text' name='userName' onChange={ this.inputChange} placeholder='Enter User Name'/>
                   </Form.Group>            
