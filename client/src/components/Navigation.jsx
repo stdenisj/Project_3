@@ -33,7 +33,7 @@ export default class Navigation extends Component {
                     </Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-                <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                     
                 <Link to='/restaurants' style={{ color: 'green',
