@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, Redirect } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Nav } from 'react-bootstrap'
 
 export default class Navigation extends Component {
     state = {
@@ -34,6 +34,12 @@ export default class Navigation extends Component {
                 </Link>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end">
+                <Link to='/restaurants' style={{ color: 'green',
+                                        fontSize: '15px',
+                                        margin: '0px 10px'}} >Restaurants</Link>
+                <Link to='/' style={{ color: 'green',
+                                        fontSize: '15px',
+                                        margin: '0px 10px'}} >Search</Link>
                     { this.props.user.userName !== undefined 
                     ? <Navbar.Text >
                             <Navbar.Text style={{ margin: '0px 5vw'}}>Hello { this.props.user.name }   
