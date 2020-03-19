@@ -42,6 +42,7 @@ export default class RestaurantForm extends Component {
     };
 
     submitNewRestaurant = (event) => {
+        event.preventDefault();
         axios.post('/api/restaurants/', this.state.form).then( () => {
             this.props.toggleAddForm();
             this.props.getRestaurants();
@@ -76,7 +77,7 @@ export default class RestaurantForm extends Component {
             
         return (
             this.state.isRedirect
-            ? <Redirect to='/' />
+            ? <Redirect to='/restaurants' />
             : <div>
                 <Form onSubmit={ this.props.isEdit? this.submitEditForm : this.submitNewRestaurant }>
                     <Form.Group>
@@ -107,7 +108,7 @@ export default class RestaurantForm extends Component {
                         <Form.Control
                                     type='text' 
                                     name='state'
-                                    placeholder='Enter State' 
+                                    placeholder='Enter State(Abbreviation)' 
                                     onChange={ this.inputChange }
                                     value={ state }/>
                     </Form.Group>

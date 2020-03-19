@@ -10,7 +10,8 @@ export default class StateSelector extends Component {
     render() {
         return (
         <Form.Group>
-            <Form.Control as='select' name="searchInput" onChange={ this.selectedOption } defaultValue='GA'>
+            <Form.Control as='select' name="searchInput" onChange={ this.selectedOption } defaultValue=''>
+                    <option value=''></option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
