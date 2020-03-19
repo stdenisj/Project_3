@@ -10,7 +10,7 @@ This is Veganelp, a review site for plant-based and vegan friendly restaurants. 
 <br/>
 Technologies Used
 React.js, Javascript, Node.JS, Express, Mongoose, HTML5, CSS3,
-Design - Bootstrap, React-Bootstrap.
+Design - Bootstrap, React-Bootstrapm Google Fonts.
 Project Planning & Text Editor - Trello, Figma, Visual Studios Code
 
 WireFrame:<br>
