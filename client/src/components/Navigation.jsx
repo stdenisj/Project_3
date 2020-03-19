@@ -18,13 +18,13 @@ export default class Navigation extends Component {
     }
     render() {
         return (
-            <Navbar bg='light' id='Navigation'>
+            <Navbar bg='light' id='Navigation' expand="lg">
                 {   this.state.redirect
                     ? <Redirect to='/' />
                     : null
                 }
                 <Link to='/' >
-                    <Navbar.Brand>
+                    <Navbar.Brand >
                         <h4 style={{ fontFamily: 'Vast Shadow' }}>Veganelp</h4>
                         <p style={{ color: 'green',
                                     fontSize: '15px', 
@@ -44,6 +44,7 @@ export default class Navigation extends Component {
                                         fontFamily: 'Playfair Display',
                                         fontSize: '15px',
                                         margin: '0px 10px'}} >Search</Link>
+                    </Nav>
                     { this.props.user.userName !== undefined 
                     ? <Navbar.Text >
                             <Navbar.Text style={{ margin: '0px 5vw'}}>Hello { this.props.user.name }   
@@ -62,7 +63,6 @@ export default class Navigation extends Component {
                             ><Button variant="success" >Login</Button></Link>
                     </Navbar.Text>
                     }
-                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         )
