@@ -25,8 +25,11 @@ export default class Navigation extends Component {
                 }
                 <Link to='/' >
                     <Navbar.Brand>
-                        <h4>Veganelp</h4>
-                        <p style={{ color: 'green', fontSize: '12px'}}>Plant-Based Restaurant Reviews</p>
+                        <h3 style={{ fontFamily: 'Vast Shadow' }}>Veganelp</h3>
+                        <p style={{ color: 'green',
+                                    fontSize: '17px', 
+                                    fontFamily: 'Playfair Display',
+                                    }}>Plant-Based Restaurant Reviews</p>
                     </Navbar.Brand>
                 </Link>
                 <Navbar.Toggle />
