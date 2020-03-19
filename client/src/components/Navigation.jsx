@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, Redirect } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Nav} from 'react-bootstrap'
 
 export default class Navigation extends Component {
     state = {
@@ -32,8 +32,10 @@ export default class Navigation extends Component {
                                     }}>Plant-Based Restaurant Reviews</p>
                     </Navbar.Brand>
                 </Link>
-                <Navbar.Toggle />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+                <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                    
                 <Link to='/restaurants' style={{ color: 'green',
                                         fontFamily: 'Playfair Display',
                                         fontSize: '15px',
@@ -57,9 +59,10 @@ export default class Navigation extends Component {
                         <Link to={{
                             pathname: '/login',
                             user: this.props.user}} onClick={this.perpareRedirect}
-                        ><Button variant="success" >Login</Button></Link>
+                            ><Button variant="success" >Login</Button></Link>
                     </Navbar.Text>
                     }
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         )
