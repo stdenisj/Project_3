@@ -5,72 +5,77 @@ const express = require('express');
 const Restaurant = require('../models/restaurant');
 const restaurantRouter = express.Router();
 
-restaurantRouter.get('/', (req, res) => {
-  Restaurant.find().then( (restaurants) => {
+restaurantRouter.get('/', async(req, res) => {
+  try {
+    let restaurants = await Restaurant.find();
     res.json(restaurants);
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 });
 
 
-restaurantRouter.get('/:id', (req, res) => {
-  Restaurant.findById(req.params.id).populate( 'reviews' ).then( (restaurant) => {
+restaurantRouter.get('/:id', async(req, res) => {
+  try {
+    let restaurant = await Restaurant.findById(req.params.id).populate( 'reviews' );
     res.json(restaurant);
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 });
 
-restaurantRouter.get('/:field/:input', (req, res) => {
-  const searchInput = req.params.input;
-  Restaurant.find().then( (restaurants) => {
-    const restaurantsData = restaurants
-    const foundRestaurants = []
+restaurantRouter.get('/:field/:input', async(req, res) => {
+  try {
+    const searchInput = req.params.input;
+    let restaurants = await Restaurant.find();
+    const foundRestaurants = [];
     for(restaurant of restaurants) {
-    if (restaurant.name === searchInput) {
-      foundRestaurants.push(restaurant);
-    } else if(restaurant.location.state === searchInput) {
-      foundRestaurants.push(restaurant);
-     } else if (restaurant.location.city === searchInput) {
-      foundRestaurants.push(restaurant);
-     } else if (restaurant.location.zipCode === searchInput) {
-      foundRestaurants.push(restaurant);
-     } else { null }
+      if (restaurant.name === searchInput || restaurant.location.state === searchInput || restaurant.location.city === searchInput || restaurant.location.zipCode === searchInput) {
+        foundRestaurants.push(restaurant);
+      }
     }
     if(foundRestaurants.length === 0) {
-      res.json(restaurantsData)
+      res.json(restaurants);
     } else {
     res.json(foundRestaurants);
     }
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 })
 
 
-restaurantRouter.post('/', (req, res) => {
-  Restaurant.create(req.body).then( () => {
+restaurantRouter.post('/', async(req, res) => {
+  try {
+    await Restaurant.create(req.body)
     res.status(200).end();
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 });
 
-restaurantRouter.put('/:id', (req, res) => {
-  Restaurant.findByIdAndUpdate(req.params.id, req.body).then( () => {
+restaurantRouter.put('/:id', async(req, res) => {
+  try {
+    await Restaurant.findByIdAndUpdate(req.params.id, req.body);
     res.status(200).end();
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 });
 
-restaurantRouter.delete('/:id', (req, res) => {
-  Restaurant.findByIdAndDelete(req.params.id).then( () => {
+restaurantRouter.delete('/:id', async(req, res) => {
+  try {
+    await Restaurant.findByIdAndDelete(req.params.id);
     res.status(200).end();
-  }).catch( (e) => {
-    console.log(e)
-  });
+  }
+  catch (e) {
+    console.log(e);
+  }
 });
 
 module.exports = {

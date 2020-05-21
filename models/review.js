@@ -8,10 +8,7 @@ const Review = new Schema({
     },
     reviewerUserName: String,
     reviewerPic: String,
-    date: {
-        type: Date,
-        default: new Date,
-    },
+    date: String,
     rating: String,
     comment: String,
     restaurant: {

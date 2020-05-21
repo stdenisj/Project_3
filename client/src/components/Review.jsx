@@ -6,7 +6,7 @@ import axios from 'axios'
 export default class Review extends Component {
 
     deleteReview = () => {
-        axios.delete(`/api/reviews/${this.props.review._id}`).then( () => {
+        axios.delete(`/api/reviews/${this.props.review._id}/${this.props.currentUser.id}`).then( () => {
             this.props.getReviews();
         });
     };

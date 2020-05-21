@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 export default class ReviewForm extends Component {
     state = {
         newReview: {
-            user: this.props.user._id,
+            user: this.props.user.id,
             reviewerUserName: this.props.user.userName,
             reviewerPic: this.props.user.profileImg,
             rating: '***',
@@ -17,7 +17,10 @@ export default class ReviewForm extends Component {
 
     addNewReview = (event) => {
         event.preventDefault();
-        axios.post('/api/reviews', this.state.newReview).then( () => {
+        let submitted = { ...this.state.newReview };
+        let dateSubmitted = new Date();
+        submitted.date = dateSubmitted.toDateString();
+        axios.post('/api/reviews', submitted).then( () => {
             this.props.toggleReviewForm();
             this.props.getReviews();
         });

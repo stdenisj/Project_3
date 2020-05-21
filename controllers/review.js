@@ -2,46 +2,69 @@ const express = require('express');
 const Review = require('../models/review');
 const reviewRouter = express.Router();
 
-reviewRouter.get('/', (req, res) => {
-    Review.find().then( (reviews) => {
+reviewRouter.get('/', async(req, res) => {
+    try {
+        let foundReviews = await Review.find();
+        let reviews = [ ...foundReviews ];
+        for (review in reviews){
+            review.user = '';
+        }
         res.json(reviews);
-    }).catch( (e) => {
+    }
+    catch(e) {
         console.log(e)
-    });
+    }
 });
 
-reviewRouter.get('/:restId', (req, res) => {
-    Review.find( {restaurant: req.params.restId} ).then( (review) => {
-        res.json(review);
-    }).catch( (e) => {
+reviewRouter.get('/:restId', async(req, res) => {
+    try {
+        let foundReviews = await Review.find( {restaurant: req.params.restId} );
+        let reviews = [ ...foundReviews ];
+        for (review of reviews){
+            review.user = null;
+        }
+        res.json(reviews);
+    }
+    catch (e) {
         console.log(e)
-    });
+    }
 });
 
-reviewRouter.post('/', (req, res) => {
-    Review.create(req.body).then( () => {
+reviewRouter.post('/', async(req, res) => {
+    try {
+        await Review.create(req.body);
         res.status(200).end();
-    }).catch( (e) => {
+    }
+    catch (e) {
         console.log(e)
-    });
+    }
 });
 
-reviewRouter.put('/:reviewId', (req, res) => {
-    Review.findByIdAndUpdate(req.params.reviewId, req.body).then( () => {
-        res.status(200).end();
-    }).catch( (e) => {
+reviewRouter.delete('/:reviewId/:userId', async(req, res) => {
+    try {
+        let review = await Review.findById(req.params.reviewId);
+        if (review.user == req.params.userId){
+            await Review.findByIdAndDelete(req.params.reviewId);
+            res.status(200).end();
+        } else {
+            res.status(400).end();
+        }
+    }
+    catch (e) {
         console.log(e)
-    });
+    }
 });
 
-reviewRouter.delete('/:reviewId', (req, res) => {
-    Review.findByIdAndRemove(req.params.reviewId).then( () => {
+reviewRouter.put('/:reviewId', async(req, res) => {
+    try {
+        await Review.findByIdAndUpdate(req.params.reviewId, req.body);
         res.status(200).end();
-    }).catch( (e) => {
+    }
+    catch (e) {
         console.log(e)
-    });
+    }
 });
 
 module.exports = {
     reviewRouter
-};
+}
