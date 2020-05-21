@@ -6,7 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 export default class ReviewForm extends Component {
     state = {
         newReview: {
-            user: this.props.user.id,
+            user: this.props.user._id,
             reviewerUserName: this.props.user.userName,
             reviewerPic: this.props.user.profileImg,
             rating: '***',

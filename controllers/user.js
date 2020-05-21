@@ -16,7 +16,7 @@ userRouter.get('/:userName/:password', async(req, res) => {
                         res.json(sentUser)  
                     } else {
                         const sentUser = {
-                        id: user._id,
+                        _id: user._id,
                         userName: user._doc.userName,
                         password: '',
                         name: user._doc.name,

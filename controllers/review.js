@@ -1,6 +1,6 @@
 const express = require('express');
 const Review = require('../models/review');
-const User = require('../models/user')
+const User = require('../models/user');
 const reviewRouter = express.Router();
 
 reviewRouter.get('/', async(req, res) => {
@@ -44,7 +44,7 @@ reviewRouter.post('/', async(req, res) => {
 reviewRouter.delete('/:reviewId/:userId', async(req, res) => {
     try {
         let review = await Review.findById(req.params.reviewId);
-        let user = await User.findById(req.params.userId);
+        let user = await User.findById( req.params.userId);
         if (review.user == req.params.userId || user.adminStatus === true){
             await Review.findByIdAndDelete(req.params.reviewId);
             res.status(200).end();
