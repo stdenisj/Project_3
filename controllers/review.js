@@ -50,7 +50,7 @@ reviewRouter.delete('/:reviewId/:userId', async(req, res) => {
             res.status(200).end();
         } else {
             res.status(400).end();
-        }
+        }s
     }
     catch (e) {
         console.log(e)
